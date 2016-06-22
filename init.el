@@ -28,7 +28,8 @@
     clojure-mode-extra-font-locking
     paredit
     cider
-    swiper))
+    swiper
+    json-mode))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -141,6 +142,16 @@
 ;; Don't change size of org-mode headlines (but keep other size-changes)
 (setq solarized-scale-org-headlines nil)
 (load-theme 'solarized-light t)
+
+;;;;
+;;  Major mode
+;;;;
+
+;; json-mode
+(add-hook 'json-mode-hook
+          (lambda ()
+            (make-local-variable 'js-indent-level)
+            (setq js-indent-level 2)))
 
 ;;;;
 ;;  Minor modes
