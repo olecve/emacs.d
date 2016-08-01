@@ -12,7 +12,8 @@
 
 ;; packages to install
 (defvar my-packages
-  '(rainbow-delimiters
+  '(restclient
+    rainbow-delimiters
     volatile-highlights
     undo-tree
     smex
