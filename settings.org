@@ -1,0 +1,359 @@
+* Packages
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.org/packages/") t)
+
+(package-initialize)
+
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defvar my-packages
+  '(restclient
+    rainbow-delimiters
+    volatile-highlights
+    undo-tree
+    smex
+    sr-speedbar
+    solarized-theme
+    saveplace
+    recentf
+    projectile
+    helm
+    helm-projectile
+    clojure-mode
+    clojure-mode-extra-font-locking
+    paredit
+    cider
+    org-bullets
+    swiper
+    ido-ubiquitous
+    ido-vertical-mode
+    flx-ido
+    json-mode))
+
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
+#+END_SRC
+
+* Navigation
+** =ido=
+
+ido-mode allows you to more easily navigate choices. For example,
+when you want to switch buffers, ido presents you with a list
+of buffers in the the mini-buffer. As you start to type a buffer's
+name, ido will narrow down the list of buffers to match the text
+you've typed in
+http://www.emacswiki.org/emacs/InteractivelyDoThings
+
+#+BEGIN_SRC emacs-lisp
+  (ido-mode 1)
+  (setq ido-enable-flex-matching t)
+  (setq ido-everywhere t)
+  (flx-ido-mode 1) ; better/faster matching
+  (setq ido-create-new-buffer 'always) ; don't confirm to create new buffers
+  (ido-vertical-mode 1)
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+#+END_SRC
+
+** =helm= ???
+#+BEGIN_SRC emacs-lisp
+;(require 'helm-config)
+;(helm-mode 1)
+;(global-set-key (kbd "M-x") 'helm-M-x)
+;(setq helm-split-window-default-side 'below)
+;(setq helm-always-two-windows t
+#+END_SRC
+
+** Shows a list of buffers
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+#+END_SRC
+
+** Save place
+
+When you visit a file, point goes to the last place where it
+was when you previously visited the same file.
+http://www.emacswiki.org/emacs/SavePlace
+
+#+BEGIN_SRC emacs-lisp
+  (require 'saveplace)
+  (setq-default save-place t)
+  ;; keep track of saved places in ~/.emacs.d/places
+  (setq save-place-file (concat user-emacs-directory "places"))
+#+END_SRC
+
+** Use =recentf= to open recently edited filed with =C-x C-r=
+#+BEGIN_SRC emacs-lisp
+  (setq recentf-save-file (concat user-emacs-directory ".recentf"))
+  (require 'recentf)
+  (recentf-mode 1)
+  (setq recentf-max-menu-items 40)
+  (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+#+END_SRC
+
+** Use =smex= to handle =M-x= with =ido=
+#+BEGIN_SRC emacs-lisp
+  (require 'smex)
+  (smex-initialize)
+  (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+#+END_SRC
+
+** =swiper= great tool for search in the file
+#+BEGIN_SRC emacs-lisp
+  (require 'swiper)
+  (setq ivy-use-virtual-buffers t)
+  (global-set-key "\C-s" 'swiper)
+  (global-set-key "\C-r" 'swiper)
+#+END_SRC
+
+* UI
+** Disable window elements
+#+BEGIN_SRC emacs-lisp
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+#+END_SRC
+
+** Scrolling
+#+BEGIN_SRC emacs-lisp
+  (setq scroll-step                     1)
+  (setq scroll-margin                  10)
+  (setq scroll-conservatively       10000)
+  (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+  (setq mouse-wheel-follow-mouse       't) ;; scroll window under mouse
+#+END_SRC
+
+** Disable visual bell
+#+BEGIN_SRC emacs-lisp
+  (setq ring-bell-function 'ignore) ;; no bell
+#+END_SRC
+
+** Highlight current line
+#+BEGIN_SRC emacs-lisp
+  (global-hl-line-mode t)
+#+END_SRC
+
+** Change cursor to bar and disable blink
+#+BEGIN_SRC emacs-lisp
+  (blink-cursor-mode 0)
+  (setq-default cursor-type 'bar)
+#+END_SRC
+
+** Disable spash screen
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-startup-message t)
+#+END_SRC
+
+** Show full path to file in title bar
+#+BEGIN_SRC emacs-lisp
+  (setq-default frame-title-format "%b (%f)")
+#+END_SRC
+
+** See matching pairs of parentheses and other characters
+#+BEGIN_SRC emacs-lisp
+  (show-paren-mode t)
+#+END_SRC
+
+** Default font
+#+BEGIN_SRC emacs-lisp
+  (set-face-attribute 'default nil :family "Consolas" :height 100)
+#+END_SRC
+
+** Save typing chars when answering yes-or-no-p questions
+#+BEGIN_SRC emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+** Save all backups to ~/.emacs.d/backup
+
+Emacs can automatically create backup files. This tells Emacs to
+put all backups in ~/.emacs.d/backups. More info:
+http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
+
+#+BEGIN_SRC emacs-lisp
+  (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
+  (setq auto-save-default nil)
+#+END_SRC
+
+** linum: show line numbers
+#+BEGIN_SRC emacs-lisp
+;; Linum
+(require 'linum)
+(line-number-mode   t)
+(global-linum-mode  t)
+(column-number-mode t)
+(setq linum-format " %d")
+#+END_SRC
+
+* Editing
+** Show tabs as 2 spaces
+#+BEGIN_SRC emacs-lisp
+  (setq-default tab-width 2)
+#+END_SRC
+
+** Highlight trailing whitespaces
+#+BEGIN_SRC emacs-lisp
+  (setq-default show-trailing-whitespace t)
+#+END_SRC
+
+** Typing text replaces active selection
+#+BEGIN_SRC emacs-lisp
+  (delete-selection-mode t)
+#+END_SRC
+
+** Enable auto pairing of brackets and quotation marks
+#+BEGIN_SRC emacs-lisp
+  (electric-pair-mode 1)
+#+END_SRC
+
+* Coding customizations
+** JavaScript
+#+BEGIN_SRC emacs-lisp
+(add-hook 'json-mode-hook
+          (lambda ()
+            (make-local-variable 'js-indent-level)
+            (setq js-indent-level 2)))
+#+END_SRC
+
+* Theme
+
+#+BEGIN_SRC emacs-lisp
+  (setq solarized-use-variable-pitch nil)
+  (setq solarized-scale-org-headlines nil)
+  (setq solarized-height-plus-1 1.0)
+  (setq solarized-height-plus-2 1.0)
+  (setq solarized-height-plus-3 1.0)
+  (setq solarized-height-plus-4 1.0)
+  (load-theme 'solarized-light t)
+#+END_SRC
+
+* Modes
+** Minor modes
+*** projectile
+#+BEGIN_SRC emacs-lisp
+  (require 'projectile)
+  (projectile-global-mode)
+  ;(setq projectile-completion-system 'helm)
+  ;(helm-projectile-on)
+  (setq projectile-use-native-indexing t)
+  (setq projectile-globally-ignored-directories
+	  (append projectile-globally-ignored-directories '(".git" ".hg" "target" ".sass-cache" "node_modules")))
+#+END_SRC
+
+*** undo-tree
+#+BEGIN_SRC emacs-lisp
+  (require 'undo-tree)
+  (global-undo-tree-mode)
+#+END_SRC
+
+*** volatile-highlights
+#+BEGIN_SRC emacs-lisp
+  (require 'volatile-highlights)
+  (volatile-highlights-mode t)
+#+END_SRC
+
+*** sr-speedbar
+#+BEGIN_SRC emacs-lisp
+  (require 'sr-speedbar)
+  (setq speedbar-show-unknown-files t)
+#+END_SRC
+
+** Major modes
+*** Org
+
+Improve configuration for bullets
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-ellipsis "…")
+  (setq org-bullets-bullet-list '("•"))
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (org-bullets-mode t)))
+#+END_SRC
+
+Improve work with source files
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-fontify-natively t)
+  (setq org-src-window-setup 'current-window)
+#+END_SRC
+
+* Functions
+#+BEGIN_SRC emacs-lisp
+(require 'cl)
+(defun olecve/pretty-print-xml-region (begin end)
+  (interactive "r")
+  (save-excursion
+    (nxml-mode)
+    ;; split <foo><bar> or </foo><bar>, but not <foo></foo>
+    (goto-char begin)
+    (while (search-forward-regexp ">[ \t]*<[^/]" end t)
+      (backward-char 2) (insert "\n") (incf end))
+    ;; split <foo/></foo> and </foo></foo>
+    (goto-char begin)
+    (while (search-forward-regexp "<.*?/.*?>[ \t]*<" end t)
+      (backward-char) (insert "\n") (incf end))
+    ;; put xml namespace decls on newline
+    (goto-char begin)
+    (while (search-forward-regexp "\\(<\\([a-zA-Z][-:A-Za-z0-9]*\\)\\|['\"]\\) \\(xmlns[=:]\\)" end t)
+      (goto-char (match-end 0))
+      (backward-char 6) (insert "\n") (incf end))
+    (indent-region begin end nil))
+  (message "All indented!"))
+
+(defun olecve/xml-pretty-print-buffer ()
+  "pretty print the XML in a buffer."
+  (interactive)
+  (olecve/pretty-print-xml-region (point-min) (point-max)))
+
+(defun move-line-up ()
+  "Move up the current line."
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2)
+  (indent-according-to-mode))
+
+(defun move-line-down ()
+  "Move down the current line."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+(defun split-window-below-and-switch ()
+  (interactive)
+  (split-window-below)
+  (other-window 1))
+
+(defun split-window-right-and-switch ()
+  (interactive)
+  (split-window-right)
+  (other-window 1))
+#+END_SRC
+
+** misc
+
+some nonstandard editing and utility commands for Emacs
+
+#+BEGIN_SRC emacs-lisp
+  (require 'misc)
+#+END_SRC
+
+* Key bindings
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C--")            'text-scale-decrease)
+(global-set-key (kbd "C-=")            'text-scale-increase)
+(global-set-key (kbd "S-<down>")       'windmove-down)
+(global-set-key (kbd "S-<left>")       'windmove-left)
+(global-set-key (kbd "S-<right>")      'windmove-right)
+(global-set-key (kbd "S-<up>")         'windmove-up)
+(global-set-key [(control shift up)]   'move-line-up)
+(global-set-key [(control shift down)] 'move-line-down)
+(global-set-key (kbd "C-c g")          'helm-google-suggest)
+(global-set-key (kbd "C-x 2")          'split-window-below-and-switch)
+(global-set-key (kbd "C-x 3")          'split-window-right-and-switch)
+#+END_SRC
