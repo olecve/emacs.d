@@ -31,7 +31,8 @@
     ido-ubiquitous
     ido-vertical-mode
     flx-ido
-    json-mode))
+    json-mode
+    magit))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -356,4 +357,5 @@ some nonstandard editing and utility commands for Emacs
 (global-set-key (kbd "C-c g")          'helm-google-suggest)
 (global-set-key (kbd "C-x 2")          'split-window-below-and-switch)
 (global-set-key (kbd "C-x 3")          'split-window-right-and-switch)
+(global-set-key (kbd "C-c m")          'magit-status)
 #+END_SRC
