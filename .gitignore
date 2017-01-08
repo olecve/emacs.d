@@ -7,3 +7,5 @@ places
 projectile-bookmarks.eld
 projectile.cache
 smex-items
+abbrev_defs
+settings.el
