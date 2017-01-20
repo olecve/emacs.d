@@ -11,28 +11,32 @@
 
 (defvar my-packages
   '(restclient
+    expand-region
     rainbow-delimiters
     volatile-highlights
     undo-tree
-    smex
+    ;smex
     sr-speedbar
     solarized-theme
     saveplace
     recentf
     projectile
-    helm
-    helm-projectile
+    ;helm
+    ;helm-projectile
     clojure-mode
     clojure-mode-extra-font-locking
     paredit
     cider
     org-bullets
-    swiper
     ido-ubiquitous
     ido-vertical-mode
     flx-ido
     json-mode
-    magit))
+    magit
+    ; counsel depends on ivy and swiper as dependencies
+    counsel
+    ivy
+    swiper))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -40,7 +44,34 @@
 #+END_SRC
 
 * Navigation
-** =ido=
+** =ivy=
+
+#+BEGIN_SRC emacs-lisp
+(require 'ivy)
+
+(setq ivy-use-virtual-buffers t)
+(setq ivy-count-format "(%d/%d) ")
+(setq ivy-extra-directories nil) ; hide ../ and ./
+
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+#+END_SRC
+
+** =ido= ???
 
 ido-mode allows you to more easily navigate choices. For example,
 when you want to switch buffers, ido presents you with a list
@@ -50,13 +81,13 @@ you've typed in
 http://www.emacswiki.org/emacs/InteractivelyDoThings
 
 #+BEGIN_SRC emacs-lisp
-  (ido-mode 1)
-  (setq ido-enable-flex-matching t)
-  (setq ido-everywhere t)
-  (flx-ido-mode 1) ; better/faster matching
-  (setq ido-create-new-buffer 'always) ; don't confirm to create new buffers
-  (ido-vertical-mode 1)
-  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+;(ido-mode 1)
+;(setq ido-enable-flex-matching t)
+;(setq ido-everywhere t)
+;(flx-ido-mode 1) ; better/faster matching
+;(setq ido-create-new-buffer 'always) ; don't confirm to create new buffers
+;(ido-vertical-mode 1)
+;(setq ido-vertical-define-keys 'C-n-and-C-p-only)
 #+END_SRC
 
 ** =helm= ???
@@ -99,8 +130,8 @@ http://www.emacswiki.org/emacs/SavePlace
 #+BEGIN_SRC emacs-lisp
   (require 'smex)
   (smex-initialize)
-  (global-set-key (kbd "M-x") 'smex)
-  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+  ;(global-set-key (kbd "M-x") 'smex)
+  ;(global-set-key (kbd "M-X") 'smex-major-mode-commands)
 #+END_SRC
 
 ** =swiper= great tool for search in the file
@@ -354,8 +385,10 @@ some nonstandard editing and utility commands for Emacs
 (global-set-key (kbd "S-<up>")         'windmove-up)
 (global-set-key [(control shift up)]   'move-line-up)
 (global-set-key [(control shift down)] 'move-line-down)
-(global-set-key (kbd "C-c g")          'helm-google-suggest)
+;(global-set-key (kbd "C-c g")          'helm-google-suggest)
 (global-set-key (kbd "C-x 2")          'split-window-below-and-switch)
 (global-set-key (kbd "C-x 3")          'split-window-right-and-switch)
 (global-set-key (kbd "C-c m")          'magit-status)
+(global-set-key (kbd "C-w")            'er/expand-region)
+(global-set-key (kbd "C-S-w")          'er/contract-region)
 #+END_SRC
