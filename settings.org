@@ -21,8 +21,6 @@
     saveplace
     recentf
     projectile
-    ;helm
-    ;helm-projectile
     clojure-mode
     clojure-mode-extra-font-locking
     paredit
@@ -88,15 +86,6 @@ http://www.emacswiki.org/emacs/InteractivelyDoThings
 ;(setq ido-create-new-buffer 'always) ; don't confirm to create new buffers
 ;(ido-vertical-mode 1)
 ;(setq ido-vertical-define-keys 'C-n-and-C-p-only)
-#+END_SRC
-
-** =helm= ???
-#+BEGIN_SRC emacs-lisp
-;(require 'helm-config)
-;(helm-mode 1)
-;(global-set-key (kbd "M-x") 'helm-M-x)
-;(setq helm-split-window-default-side 'below)
-;(setq helm-always-two-windows t
 #+END_SRC
 
 ** Shows a list of buffers
@@ -268,8 +257,6 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+BEGIN_SRC emacs-lisp
   (require 'projectile)
   (projectile-global-mode)
-  ;(setq projectile-completion-system 'helm)
-  ;(helm-projectile-on)
   (setq projectile-use-native-indexing t)
   (setq projectile-globally-ignored-directories
 	  (append projectile-globally-ignored-directories '(".git" ".hg" "target" ".sass-cache" "node_modules")))
@@ -385,7 +372,6 @@ some nonstandard editing and utility commands for Emacs
 (global-set-key (kbd "S-<up>")         'windmove-up)
 (global-set-key [(control shift up)]   'move-line-up)
 (global-set-key [(control shift down)] 'move-line-down)
-;(global-set-key (kbd "C-c g")          'helm-google-suggest)
 (global-set-key (kbd "C-x 2")          'split-window-below-and-switch)
 (global-set-key (kbd "C-x 3")          'split-window-right-and-switch)
 (global-set-key (kbd "C-c m")          'magit-status)
