@@ -259,7 +259,7 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
   (projectile-global-mode)
   (setq projectile-use-native-indexing t)
   (setq projectile-globally-ignored-directories
-	  (append projectile-globally-ignored-directories '(".git" ".hg" "target" ".sass-cache" "node_modules")))
+	  (append projectile-globally-ignored-directories '(".git" ".hg" "target" ".sass-cache" "node_modules" ".idea")))
 #+END_SRC
 
 *** undo-tree
