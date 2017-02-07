@@ -18,9 +18,6 @@
     solarized-theme
     saveplace
     recentf
-    ido-ubiquitous
-    ido-vertical-mode
-    flx-ido
     json-mode
     magit
     projectile
@@ -70,25 +67,6 @@
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
-#+END_SRC
-
-** =ido= ???
-
-ido-mode allows you to more easily navigate choices. For example,
-when you want to switch buffers, ido presents you with a list
-of buffers in the the mini-buffer. As you start to type a buffer's
-name, ido will narrow down the list of buffers to match the text
-you've typed in
-http://www.emacswiki.org/emacs/InteractivelyDoThings
-
-#+BEGIN_SRC emacs-lisp
-;(ido-mode 1)
-;(setq ido-enable-flex-matching t)
-;(setq ido-everywhere t)
-;(flx-ido-mode 1) ; better/faster matching
-;(setq ido-create-new-buffer 'always) ; don't confirm to create new buffers
-;(ido-vertical-mode 1)
-;(setq ido-vertical-define-keys 'C-n-and-C-p-only)
 #+END_SRC
 
 ** Shows a list of buffers
