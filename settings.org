@@ -128,12 +128,14 @@ http://www.emacswiki.org/emacs/SavePlace
 
 * UI
 ** Disable window elements
+
 #+BEGIN_SRC emacs-lisp
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
 #+END_SRC
 
 ** Scrolling
+
 #+BEGIN_SRC emacs-lisp
   (setq scroll-step                     1)
   (setq scroll-margin                  10)
@@ -143,42 +145,50 @@ http://www.emacswiki.org/emacs/SavePlace
 #+END_SRC
 
 ** Disable visual bell
+
 #+BEGIN_SRC emacs-lisp
   (setq ring-bell-function 'ignore) ;; no bell
 #+END_SRC
 
 ** Highlight current line
+
 #+BEGIN_SRC emacs-lisp
   (global-hl-line-mode t)
 #+END_SRC
 
 ** Change cursor to bar and disable blink
+
 #+BEGIN_SRC emacs-lisp
   (blink-cursor-mode 0)
   (setq-default cursor-type 'bar)
 #+END_SRC
 
 ** Disable spash screen
+
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-startup-message t)
 #+END_SRC
 
 ** Show full path to file in title bar
+
 #+BEGIN_SRC emacs-lisp
   (setq-default frame-title-format "%b (%f)")
 #+END_SRC
 
 ** See matching pairs of parentheses and other characters
+
 #+BEGIN_SRC emacs-lisp
   (show-paren-mode t)
 #+END_SRC
 
 ** Default font
+
 #+BEGIN_SRC emacs-lisp
   (set-face-attribute 'default nil :family "Consolas" :height 100)
 #+END_SRC
 
 ** Save typing chars when answering yes-or-no-p questions
+
 #+BEGIN_SRC emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
@@ -195,8 +205,8 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+END_SRC
 
 ** linum: show line numbers
+
 #+BEGIN_SRC emacs-lisp
-;; Linum
 (require 'linum)
 (line-number-mode   t)
 (global-linum-mode  t)
@@ -386,7 +396,7 @@ some nonstandard editing and utility commands for Emacs
 (global-set-key (kbd "C-x 2")          'split-window-below-and-switch)
 (global-set-key (kbd "C-x 3")          'split-window-right-and-switch)
 (global-set-key (kbd "C-c m")          'magit-status)
-(global-set-key (kbd "C-w")            'er/expand-region)
-(global-set-key (kbd "C-S-w")          'er/contract-region)
-(global-set-key (kbd "TAB")            #'company-indent-or-complete-common)
+(global-set-key (kbd "M-=")            'er/expand-region)
+(global-set-key (kbd "M--")            'er/contract-region)
+(global-set-key (kbd "TAB")            'company-indent-or-complete-common)
 #+END_SRC
