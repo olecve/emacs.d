@@ -127,6 +127,12 @@ http://www.emacswiki.org/emacs/SavePlace
 #+END_SRC
 
 * UI
+** Disable menu bar
+
+#+BEGIN_SRC emacs-lisp
+(menu-bar-mode -1)
+#+END_SRC
+
 ** Disable window elements
 
 #+BEGIN_SRC emacs-lisp
@@ -399,4 +405,5 @@ some nonstandard editing and utility commands for Emacs
 (global-set-key (kbd "M-=")            'er/expand-region)
 (global-set-key (kbd "M--")            'er/contract-region)
 (global-set-key (kbd "TAB")            'company-indent-or-complete-common)
+(global-set-key (kbd "<f12>")          'menu-bar-mode)
 #+END_SRC
