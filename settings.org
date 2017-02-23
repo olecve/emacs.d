@@ -314,7 +314,7 @@ Check http://aspell.net/win32/ for dictionaries
   (setq org-src-window-setup 'current-window)
 #+END_SRC
 
-**** Remove markup characterd
+**** Remove markup characters
 
 #+BEGIN_SRC emacs-lisp
   (setq org-hide-emphasis-markers t)
