@@ -260,6 +260,16 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 
 * Modes
 ** Minor modes
+*** flyspell
+
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables
+ '(ispell-program-name "c:\\Program Files (x86)\\Aspell\\bin\\aspell.exe"))
+
+;; Enable Flyspell for text modes
+(add-hook 'text-mode-hook 'flyspell-mode)
+#+END_SRC
+
 *** projectile
 #+BEGIN_SRC emacs-lisp
   (require 'projectile)
@@ -268,7 +278,6 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
   (setq projectile-globally-ignored-directories
     (append projectile-globally-ignored-directories '(".git" ".hg" "target" ".sass-cache" "node_modules" ".idea")))
 #+END_SRC
-
 *** undo-tree
 #+BEGIN_SRC emacs-lisp
   (require 'undo-tree)
