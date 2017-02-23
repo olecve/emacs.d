@@ -261,13 +261,14 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 * Modes
 ** Minor modes
 *** flyspell
+Check http://aspell.net/win32/ for dictionaries
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-variables
- '(ispell-program-name "c:\\Program Files (x86)\\Aspell\\bin\\aspell.exe"))
+  (custom-set-variables
+   '(ispell-program-name "c:\\Program Files (x86)\\Aspell\\bin\\aspell.exe"))
 
-;; Enable Flyspell for text modes
-(add-hook 'text-mode-hook 'flyspell-mode)
+  ; Enable Flyspell for text modes
+  (add-hook 'text-mode-hook 'flyspell-mode)
 #+END_SRC
 
 *** projectile
