@@ -289,31 +289,29 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 
 ** Major modes
 *** Org
-**** Improve configuration
-		 - improve visual for bullets
-		 - wrap long lines without justifying it
+**** Improve visual for bullets
 
 #+BEGIN_SRC emacs-lisp
   (setq org-ellipsis "…")
   (setq org-bullets-bullet-list '("•"))
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (org-bullets-mode t)
-              (turn-on-visual-mode t)))
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
 #+END_SRC
 
 **** Improve work with source files
+
 #+BEGIN_SRC emacs-lisp
   (setq org-src-fontify-natively t)
   (setq org-src-window-setup 'current-window)
 #+END_SRC
 
 **** Remove markup characterd
+
 #+BEGIN_SRC emacs-lisp
   (setq org-hide-emphasis-markers t)
 #+END_SRC
 
 * Functions
+
 #+BEGIN_SRC emacs-lisp
 (require 'cl)
 (defun olecve/pretty-print-xml-region (begin end)
@@ -392,5 +390,5 @@ some nonstandard editing and utility commands for Emacs
 (global-set-key (kbd "M--")            'er/contract-region)
 (global-set-key (kbd "TAB")            'company-indent-or-complete-common)
 (global-set-key (kbd "<f12>")          'menu-bar-mode)
-(define-key org-mode-map "\M-q"        'toggle-truncate-lines)
+(define-key org-mode-map "\M-q"        'visual-line-mode)
 #+END_SRC
