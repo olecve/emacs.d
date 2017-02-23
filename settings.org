@@ -310,6 +310,23 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
   (setq org-hide-emphasis-markers t)
 #+END_SRC
 
+**** Clojure code blocks
+
+#+BEGIN_SRC emacs-lisp
+  (org-defkey org-mode-map "\C-x\C-e" 'cider-eval-last-sexp)
+  (org-defkey org-mode-map "\C-c\C-d" 'cider-doc)
+
+  ; No timeout when executing calls on Cider via nrepl
+  (setq org-babel-clojure-sync-nrepl-timeout nil)
+
+  ; Let's have pretty source code blocks
+  (setq org-edit-src-content-indentation 0
+        org-src-tab-acts-natively t
+        org-src-fontify-natively t
+        org-confirm-babel-evaluate nil
+        org-support-shift-select 'always)
+#+END_SRC
+
 * Functions
 
 #+BEGIN_SRC emacs-lisp
