@@ -197,9 +197,11 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+BEGIN_SRC emacs-lisp
 (require 'linum)
 (line-number-mode   t)
-(global-linum-mode  t)
 (column-number-mode t)
-(setq linum-format " %d")
+(setq linum-format  " %d")
+
+(add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'text-mode-hook 'linum-mode)
 #+END_SRC
 
 * Editing
@@ -336,7 +338,8 @@ Check http://aspell.net/win32/ for dictionaries
         org-src-tab-acts-natively t
         org-src-fontify-natively t
         org-confirm-babel-evaluate nil
-        org-support-shift-select 'always)
+        ;org-support-shift-select 'always
+  )
 #+END_SRC
 
 * Functions
