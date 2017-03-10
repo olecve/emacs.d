@@ -9,3 +9,5 @@ projectile.cache
 smex-items
 abbrev_defs
 settings.el
+eshell/history
+eshell/lastdir
