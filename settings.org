@@ -20,7 +20,9 @@
     recentf
     json-mode
     magit
+    ; projects
     projectile
+    project-explorer
     ; org-mode extentions
     org-bullets
     ; counsel depends on ivy and swiper as dependencies
