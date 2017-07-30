@@ -337,9 +337,7 @@ Check http://aspell.net/win32/ for dictionaries
   (setq org-edit-src-content-indentation 0
         org-src-tab-acts-natively t
         org-src-fontify-natively t
-        org-confirm-babel-evaluate nil
-        ;org-support-shift-select 'always
-  )
+        org-confirm-babel-evaluate nil)
 #+END_SRC
 
 * Functions
