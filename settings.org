@@ -40,6 +40,7 @@
     ; text/code navigation help
     highlight-symbol
     ; others
+    which-key
     adaptive-wrap))
 
 (dolist (p my-packages)
