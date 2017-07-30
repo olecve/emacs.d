@@ -41,11 +41,48 @@
     highlight-symbol
     ; others
     which-key
-    adaptive-wrap))
+    adaptive-wrap
+    whitespace))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+#+END_SRC
+
+* Bootstrap
+
+Override defaults
+
+#+BEGIN_SRC emacs-lisp
+(blink-cursor-mode 0)   ; Disabled blinking cursor
+(menu-bar-mode -1)      ; Disable the menu bar
+(scroll-bar-mode -1)    ; Disable the scroll bar
+(tool-bar-mode -1)      ; Disable tool bar
+
+(setq-default
+ cursor-type 'bar                  ; Change type of cursor
+ frame-title-format "%b (%f)"      ; Show full path to file in title bar
+ inhibit-startup-message t         ; Disable start-up screen
+ initial-scratch-message ""        ; Empty the initial *scratch* buffer
+ ring-bell-function 'ignore        ; Disable bell
+ scroll-step 1                     ;
+ scroll-margin 2                   ; Add a margin when scrolling vertically
+ scroll-conservatively 10000       ;
+ mouse-wheel-progressive-speed nil ; Don't accelerate scrolling
+ mouse-wheel-follow-mouse 't       ; Scroll window under mouse
+ show-trailing-whitespace nil      ; Display trailing whitespaces, configured later for modes
+ tab-width 2)                      ; Set width for tabs
+(global-hl-line-mode)              ; Hightlight current line
+(delete-selection-mode)            ; Replace region when inserting text
+(global-subword-mode)              ; Iterate through CamelCase words
+
+(defalias 'yes-or-no-p 'y-or-n-p)  ; Save typing chars when answering yes-or-no-p questions
+#+END_SRC
+
+Garbage-collect on focus-out, Emacs /should/ feel snappier.
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'focus-out-hook #'garbage-collect)
 #+END_SRC
 
 * Navigation
@@ -78,7 +115,7 @@
 
 ** Shows a list of buffers
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 #+END_SRC
 
 ** Save place
@@ -95,93 +132,29 @@ http://ergoemacs.org/emacs/emacs_save_cursor_position.html
 #+END_SRC
 
 ** Use =recentf= to open recently edited filed with =C-x C-r=
+
 #+BEGIN_SRC emacs-lisp
-  (setq recentf-save-file (concat user-emacs-directory ".recentf"))
-  (require 'recentf)
-  (recentf-mode 1)
-  (setq recentf-max-menu-items 40)
-  (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+(setq recentf-save-file (concat user-emacs-directory ".recentf"))
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 40)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
 #+END_SRC
 
 ** =swiper= great tool for search in the file
+
 #+BEGIN_SRC emacs-lisp
-  (require 'swiper)
-  (setq ivy-use-virtual-buffers t)
-  (global-set-key "\C-s" 'swiper)
-  (global-set-key "\C-r" 'swiper)
+(require 'swiper)
+(setq ivy-use-virtual-buffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key "\C-r" 'swiper)
 #+END_SRC
 
 * UI
-** Disable menu bar
-
-#+BEGIN_SRC emacs-lisp
-(menu-bar-mode -1)
-#+END_SRC
-
-** Disable window elements
-
-#+BEGIN_SRC emacs-lisp
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
-#+END_SRC
-
-** Scrolling
-
-#+BEGIN_SRC emacs-lisp
-  (setq scroll-step                     1)
-  (setq scroll-margin                   2)
-  (setq scroll-conservatively       10000)
-  (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-  (setq mouse-wheel-follow-mouse       't) ;; scroll window under mouse
-#+END_SRC
-
-** Disable visual bell
-
-#+BEGIN_SRC emacs-lisp
-  (setq ring-bell-function 'ignore) ;; no bell
-#+END_SRC
-
-** Highlight current line
-
-#+BEGIN_SRC emacs-lisp
-  (global-hl-line-mode t)
-#+END_SRC
-
-** Change cursor to bar and disable blink
-
-#+BEGIN_SRC emacs-lisp
-  (blink-cursor-mode 0)
-  (setq-default cursor-type 'bar)
-#+END_SRC
-
-** Disable spash screen
-
-#+BEGIN_SRC emacs-lisp
-  (setq inhibit-startup-message t)
-#+END_SRC
-
-** Show full path to file in title bar
-
-#+BEGIN_SRC emacs-lisp
-  (setq-default frame-title-format "%b (%f)")
-#+END_SRC
-
 ** See matching pairs of parentheses and other characters
 
 #+BEGIN_SRC emacs-lisp
-  (show-paren-mode t)
-#+END_SRC
-
-** Default font
-
-#+BEGIN_SRC emacs-lisp
-  (set-face-attribute 'default nil :family "Consolas" :height 100)
-#+END_SRC
-
-** Save typing chars when answering yes-or-no-p questions
-
-#+BEGIN_SRC emacs-lisp
-  (defalias 'yes-or-no-p 'y-or-n-p)
+(show-paren-mode t)
 #+END_SRC
 
 ** Save all backups to ~/.emacs.d/backup
@@ -191,14 +164,15 @@ put all backups in ~/.emacs.d/backups. More info:
 http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 
 #+BEGIN_SRC emacs-lisp
-  (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
-  (setq auto-save-default nil)
+(setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
+(setq auto-save-default nil)
 #+END_SRC
 
 ** *linum* show line numbers
 
 #+BEGIN_SRC emacs-lisp
 (require 'linum)
+
 (line-number-mode   t)
 (column-number-mode t)
 (setq linum-format  " %d")
@@ -207,35 +181,34 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 (add-hook 'text-mode-hook 'linum-mode)
 #+END_SRC
 
+** whitespaces
+
+#+BEGIN_SRC emacs-lisp
+(require 'whitespace)
+
+(setq-default whitespace-style '(face empty tab trailing))
+
+(add-hook 'prog-mode-hook #'whitespace-turn-on)
+(add-hook 'text-mode-hook #'whitespace-turn-on)
+#+END_SRC
+
 * Editing
-** Show tabs as 2 spaces
-#+BEGIN_SRC emacs-lisp
-  (setq-default tab-width 2)
-#+END_SRC
-
-** Highlight trailing whitespaces
-#+BEGIN_SRC emacs-lisp
-  (setq-default show-trailing-whitespace t)
-#+END_SRC
-
-** Typing text replaces active selection
-#+BEGIN_SRC emacs-lisp
-  (delete-selection-mode t)
-#+END_SRC
-
 ** Enable auto pairing of brackets and quotation marks
+
 #+BEGIN_SRC emacs-lisp
-  (electric-pair-mode 1)
+(electric-pair-mode 1)
 #+END_SRC
 
 * Coding customizations
-** Java Script
+** JavaScript
+
 #+BEGIN_SRC emacs-lisp
 (add-hook 'json-mode-hook
           (lambda ()
             (make-local-variable 'js-indent-level)
             (setq js-indent-level 2)))
 #+END_SRC
+
 ** Clojure
 
 #+BEGIN_SRC emacs-lisp
@@ -254,54 +227,67 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+END_SRC
 
 * Theme
+** Default font
 
 #+BEGIN_SRC emacs-lisp
-  (setq solarized-use-variable-pitch nil)
-  (setq solarized-scale-org-headlines nil)
-  (setq solarized-height-plus-1 1.0)
-  (setq solarized-height-plus-2 1.0)
-  (setq solarized-height-plus-3 1.0)
-  (setq solarized-height-plus-4 1.0)
-  (load-theme 'solarized-light t)
+(set-face-attribute 'default nil :family "Consolas" :height 100)
+#+END_SRC
+
+** Adjust solarized theme
+
+#+BEGIN_SRC emacs-lisp
+(setq solarized-use-variable-pitch nil)
+(setq solarized-scale-org-headlines nil)
+(setq solarized-height-plus-1 1.0)
+(setq solarized-height-plus-2 1.0)
+(setq solarized-height-plus-3 1.0)
+(setq solarized-height-plus-4 1.0)
+(load-theme 'solarized-light t)
 #+END_SRC
 
 * Modes
 ** Minor modes
 *** flyspell
+
 Check http://aspell.net/win32/ for dictionaries
 
 #+BEGIN_SRC emacs-lisp
-  (custom-set-variables
-   '(ispell-program-name "c:\\Program Files (x86)\\Aspell\\bin\\aspell.exe"))
+(custom-set-variables
+ '(ispell-program-name "c:\\Program Files (x86)\\Aspell\\bin\\aspell.exe"))
 
-  ; Enable Flyspell for text modes
-  (add-hook 'text-mode-hook 'flyspell-mode)
+; Enable Flyspell for text modes
+(add-hook 'text-mode-hook 'flyspell-mode)
 #+END_SRC
 
 *** projectile
+
 #+BEGIN_SRC emacs-lisp
-  (require 'projectile)
-  (projectile-global-mode)
-  (setq projectile-use-native-indexing t)
-  (setq projectile-globally-ignored-directories
-    (append projectile-globally-ignored-directories '(".git" ".hg" "target" ".sass-cache" "node_modules" ".idea")))
+(require 'projectile)
+(projectile-global-mode)
+(setq projectile-use-native-indexing t)
+(setq projectile-globally-ignored-directories
+  (append projectile-globally-ignored-directories '(".git" ".hg" "target" ".sass-cache" "node_modules" ".idea")))
 #+END_SRC
+
 *** undo-tree
+
 #+BEGIN_SRC emacs-lisp
-  (require 'undo-tree)
-  (global-undo-tree-mode)
+(require 'undo-tree)
+(global-undo-tree-mode)
 #+END_SRC
 
 *** volatile-highlights
+
 #+BEGIN_SRC emacs-lisp
-  (require 'volatile-highlights)
-  (volatile-highlights-mode t)
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
 #+END_SRC
 
 *** sr-speedbar
+
 #+BEGIN_SRC emacs-lisp
-  (require 'sr-speedbar)
-  (setq speedbar-show-unknown-files t)
+(require 'sr-speedbar)
+(setq speedbar-show-unknown-files t)
 #+END_SRC
 
 ** Major modes
@@ -309,38 +295,38 @@ Check http://aspell.net/win32/ for dictionaries
 **** Improve visual for bullets
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-ellipsis "…")
-  (setq org-bullets-bullet-list '("•"))
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
+(setq org-ellipsis "…")
+(setq org-bullets-bullet-list '("•"))
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
 #+END_SRC
 
 **** Improve work with source files
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-src-fontify-natively t)
-  (setq org-src-window-setup 'current-window)
+(setq org-src-fontify-natively t)
+(setq org-src-window-setup 'current-window)
 #+END_SRC
 
 **** Remove markup characters
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-hide-emphasis-markers t)
+(setq org-hide-emphasis-markers t)
 #+END_SRC
 
 **** Clojure code blocks
 
 #+BEGIN_SRC emacs-lisp
-  (org-defkey org-mode-map "\C-x\C-e" 'cider-eval-last-sexp)
-  (org-defkey org-mode-map "\C-c\C-d" 'cider-doc)
+(org-defkey org-mode-map "\C-x\C-e" 'cider-eval-last-sexp)
+(org-defkey org-mode-map "\C-c\C-d" 'cider-doc)
 
-  ; No timeout when executing calls on Cider via nrepl
-  (setq org-babel-clojure-sync-nrepl-timeout nil)
+; No timeout when executing calls on Cider via nrepl
+(setq org-babel-clojure-sync-nrepl-timeout nil)
 
-  ; Let's have pretty source code blocks
-  (setq org-edit-src-content-indentation 0
-        org-src-tab-acts-natively t
-        org-src-fontify-natively t
-        org-confirm-babel-evaluate nil)
+; Let's have pretty source code blocks
+(setq org-edit-src-content-indentation 0
+      org-src-tab-acts-natively t
+      org-src-fontify-natively t
+      org-confirm-babel-evaluate nil)
 #+END_SRC
 
 * Functions
@@ -400,10 +386,10 @@ Check http://aspell.net/win32/ for dictionaries
 
 ** misc
 
-some nonstandard editing and utility commands for Emacs
+some non-standard editing and utility commands for Emacs
 
 #+BEGIN_SRC emacs-lisp
-  (require 'misc)
+(require 'misc)
 #+END_SRC
 
 * Key bindings
