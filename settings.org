@@ -168,17 +168,11 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 (setq auto-save-default nil)
 #+END_SRC
 
-** *linum* show line numbers
+** Show line numbers
 
 #+BEGIN_SRC emacs-lisp
-(require 'linum)
-
-(line-number-mode   t)
-(column-number-mode t)
-(setq linum-format  " %d")
-
-(add-hook 'prog-mode-hook 'linum-mode)
-(add-hook 'text-mode-hook 'linum-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'text-mode-hook 'display-line-numbers-mode)
 #+END_SRC
 
 ** whitespaces
