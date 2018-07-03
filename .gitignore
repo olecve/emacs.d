@@ -12,3 +12,4 @@ settings.el
 eshell/history
 eshell/lastdir
 project-explorer-cache/
+.custom.el
