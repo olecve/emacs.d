@@ -241,8 +241,6 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 		  (progn
 			  (set-face-attribute 'default nil :family "Consolas" :height 100)
 				(set-face-attribute 'italic nil :underline nil)))
-			((eq system-type 'darwin)
-        (t nil))
 			(t nil)))
 #+END_SRC
 
