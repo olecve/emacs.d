@@ -15,7 +15,6 @@
     volatile-highlights
     undo-tree
     sr-speedbar
-    solarized-theme
     saveplace
     recentf
     json-mode
@@ -39,6 +38,8 @@
     clojure-mode-extra-font-locking
     ; text/code navigation help
     highlight-symbol
+    ; themes
+    solarized-theme
     ; others
     which-key
     adaptive-wrap
@@ -248,6 +249,14 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 (setq solarized-height-plus-3 1.0)
 (setq solarized-height-plus-4 1.0)
 (load-theme 'solarized-light t)
+
+(setq current-theme-dark nil)
+(defun toggle-theme ()
+  (interactive)
+  (if current-theme-dark
+      (load-theme 'solarized-light t)
+      (load-theme 'solarized-dark t))
+  (setq current-theme-dark (not current-theme-dark)))
 #+END_SRC
 
 * Modes
@@ -415,6 +424,7 @@ some non-standard editing and utility commands for Emacs
 (global-set-key (kbd "M--")            'er/contract-region)
 (global-set-key (kbd "TAB")            'company-indent-or-complete-common)
 (global-set-key (kbd "<f12>")          'menu-bar-mode)
+(global-set-key (kbd "<f7>")           'toggle-theme)
 (global-set-key [f9]                   'cider-jack-in)
 (global-set-key [(control f3)]         'highlight-symbol)
 (global-set-key [f3]                   'highlight-symbol-next)
