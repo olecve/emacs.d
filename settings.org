@@ -235,6 +235,7 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 
 #+BEGIN_SRC emacs-lisp
 (set-face-attribute 'default nil :family "Consolas" :height 100)
+(set-face-attribute 'italic nil :underline nil)
 #+END_SRC
 
 ** Adjust solarized theme
@@ -251,16 +252,17 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 
 * Modes
 ** Minor modes
-*** flyspell
+*** flyspell (disabled as aspell not available on win)
 
-Check http://aspell.net/win32/ for dictionaries
+Check http://aspell.net/win32/ for dictionaries.
+Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs/2014-04/msg00030.html
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-variables
- '(ispell-program-name "c:\\Program Files (x86)\\Aspell\\bin\\aspell.exe"))
-
+;(custom-set-variables
+; '(ispell-program-name "c:\\Program Files (x86)\\Aspell\\bin\\aspell.exe"))
+;
 ; Enable Flyspell for text modes
-(add-hook 'text-mode-hook 'flyspell-mode)
+;(add-hook 'text-mode-hook 'flyspell-mode)
 #+END_SRC
 
 *** projectile
