@@ -236,13 +236,14 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 
 #+BEGIN_SRC emacs-lisp
 (setq system-specific-font
-			(cond ((eq system-type 'windows-nt)
-						 (progn
-							 (set-face-attribute 'default nil :family "Consolas" :height 100)
-							 (set-face-attribute 'italic nil :underline nil)))
-						((eq system-type 'darwin)
-               (set-face-attribute 'default nil :family "Inconsolata" :height 145 :weight 'normal))
-						(t nil)))
+	(cond
+    ((eq system-type 'windows-nt)
+		  (progn
+			  (set-face-attribute 'default nil :family "Consolas" :height 100)
+				(set-face-attribute 'italic nil :underline nil)))
+			((eq system-type 'darwin)
+        (t nil)
+			(t nil)))
 #+END_SRC
 
 ** Adjust solarized theme
