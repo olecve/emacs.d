@@ -38,6 +38,9 @@
     clojure-mode-extra-font-locking
     ; text/code navigation help
     highlight-symbol
+    ; file browser
+    ranger
+    treemacs
     ; themes
     solarized-theme
     ; others
