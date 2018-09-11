@@ -19,6 +19,7 @@
     recentf
     json-mode
     magit
+    markdown-mode
     ; projects
     projectile
     project-explorer
