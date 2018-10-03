@@ -439,5 +439,11 @@ some non-standard editing and utility commands for Emacs
 (global-set-key [f3]                   'highlight-symbol-next)
 (global-set-key [(shift f3)]           'highlight-symbol-prev)
 (global-set-key [(meta f3)]            'highlight-symbol-query-replace)
+(global-set-key (kbd "M-0")            'treemacs-select-window)
+(global-set-key (kbd "C-x t 1")        'treemacs-delete-other-windows)
+(global-set-key (kbd "C-x t t")        'treemacs)
+(global-set-key (kbd "C-x t B")        'treemacs-bookmark)
+(global-set-key (kbd "C-x t C-t")      'treemacs-find-file)
+(global-set-key (kbd "C-x t M-t")      'treemacs-find-tag)
 (define-key org-mode-map "\M-q"        'visual-line-mode)
 #+END_SRC
