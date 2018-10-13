@@ -42,6 +42,8 @@
     ; file browser
     ranger
     treemacs
+    ; eshell
+    esh-autosuggest
     ; themes
     solarized-theme
     ; others
@@ -356,10 +358,15 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
 *** eshell
 
 #+BEGIN_SRC emacs-lisp
-(setq eshell-scroll-to-bottom-on-input t)
+(setq eshell-scroll-to-bottom-on-input t
+      eshell-list-files-after-cd t)
 (add-hook 'eshell-mode-hook
           (lambda ()
               (set (make-local-variable 'scroll-margin) 0)))
+
+(require 'esh-autosuggest)
+(add-hook 'eshell-mode-hook #'esh-autosuggest-mode)
+(setq esh-autosuggest-use-company-map nil)
 #+END_SRC
 
 * Functions
