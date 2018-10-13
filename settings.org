@@ -25,7 +25,7 @@
     project-explorer
     ; org-mode extentions
     org-bullets
-    ; counsel depends on ivy and swiper as dependencies
+    ; counsel depends on ivy and swiper
     counsel
     ivy
     swiper
