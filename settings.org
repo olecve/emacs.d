@@ -11,6 +11,7 @@
 
 (defvar my-packages
   '(restclient
+    diminish
     expand-region
     volatile-highlights
     undo-tree
@@ -321,6 +322,16 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
 
 #+BEGIN_SRC emacs-lisp
 (google-this-mode 1)
+#+END_SRC
+
+*** hide minor modes from the mode-line
+
+#+BEGIN_SRC emacs-lisp
+(require 'diminish)
+(diminish 'undo-tree-mode)
+(diminish 'google-this-mode)
+(diminish 'company-mode)
+(diminish 'subword-mode)
 #+END_SRC
 
 ** Major modes
