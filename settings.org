@@ -357,6 +357,9 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
 
 #+BEGIN_SRC emacs-lisp
 (setq eshell-scroll-to-bottom-on-input t)
+(add-hook 'eshell-mode-hook
+          (lambda ()
+              (set (make-local-variable 'scroll-margin) 0)))
 #+END_SRC
 
 * Functions
