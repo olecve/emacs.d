@@ -20,6 +20,7 @@
     json-mode
     magit
     markdown-mode
+    google-this
     ; projects
     projectile
     project-explorer
@@ -314,6 +315,12 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
 #+BEGIN_SRC emacs-lisp
 (require 'sr-speedbar)
 (setq speedbar-show-unknown-files t)
+#+END_SRC
+
+*** google-this
+
+#+BEGIN_SRC emacs-lisp
+(google-this-mode 1)
 #+END_SRC
 
 ** Major modes
