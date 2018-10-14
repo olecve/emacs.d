@@ -290,8 +290,8 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
 *** projectile
 
 #+BEGIN_SRC emacs-lisp
-(require 'projectile)
-(projectile-global-mode)
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (setq projectile-use-native-indexing t)
 (setq projectile-globally-ignored-directories
   (append projectile-globally-ignored-directories '(".git" ".hg" "target" ".sass-cache" "node_modules" ".idea")))
