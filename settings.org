@@ -337,6 +337,12 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
 
 ** Major modes
 *** org
+**** Enable done log
+
+#+BEGIN_SRC emacs-lisp
+(setq org-log-done t)
+#+END_SRC
+
 **** Improve visual for bullets
 
 #+BEGIN_SRC emacs-lisp
