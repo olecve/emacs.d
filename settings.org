@@ -364,6 +364,30 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
 (setq org-hide-emphasis-markers t)
 #+END_SRC
 
+**** org-agenda
+
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c a") 'org-agenda)
+(setq org-agenda-files (list "~/../../Dropbox/org/todo/home.org"
+                             "~/../../Dropbox/org/todo/etc.org"))
+#+END_SRC
+
+**** archive
+
+#+BEGIN_SRC emacs-lisp
+(defun my/org-archive-done-tasks ()
+  "Archive finished or cancelled tasks."
+  (interactive)
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (outline-previous-heading)))
+   "TODO=\"DONE\"|TODO=\"CANCELLED\"" (if (org-before-first-heading-p) 'file 'tree)))
+
+; don't ask for confirmation
+(add-to-list 'org-speed-commands-user '("a" call-interactively 'org-archive-subtree-default))
+#+END_SRC
+
 **** Clojure code blocks
 
 #+BEGIN_SRC emacs-lisp
