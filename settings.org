@@ -375,7 +375,7 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
 **** archive
 
 #+BEGIN_SRC emacs-lisp
-(defun my/org-archive-done-tasks ()
+(defun org-archive-done-tasks ()
   "Archive finished or cancelled tasks."
   (interactive)
   (org-map-entries
