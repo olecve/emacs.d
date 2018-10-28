@@ -407,12 +407,15 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
 *** eshell
 
 #+BEGIN_SRC emacs-lisp
+(require 'eshell)
 (setq eshell-scroll-to-bottom-on-input t
       eshell-list-files-after-cd t)
 (add-hook 'eshell-mode-hook
           (lambda ()
             (set (make-local-variable 'scroll-margin) 0)
-            (setenv "TERM" "xterm-256color")))
+            (setenv "TERM" "xterm-256color")
+            (eshell/alias "e" "find-file $1")
+            (eshell/alias "emacs" "find-file $1")))
 
 (require 'esh-autosuggest)
 (add-hook 'eshell-mode-hook #'esh-autosuggest-mode)
