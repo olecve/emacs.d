@@ -48,6 +48,7 @@
     esh-autosuggest
     ; themes
     solarized-theme
+    base16-theme
     ; others
     which-key
     adaptive-wrap
@@ -256,20 +257,20 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 ** Adjust solarized theme
 
 #+BEGIN_SRC emacs-lisp
-(setq solarized-use-variable-pitch nil)
-(setq solarized-scale-org-headlines nil)
-(setq solarized-height-plus-1 1.0)
-(setq solarized-height-plus-2 1.0)
-(setq solarized-height-plus-3 1.0)
-(setq solarized-height-plus-4 1.0)
-(load-theme 'solarized-light t)
+;(setq solarized-use-variable-pitch nil)
+;(setq solarized-scale-org-headlines nil)
+;(setq solarized-height-plus-1 1.0)
+;(setq solarized-height-plus-2 1.0)
+;(setq solarized-height-plus-3 1.0)
+;(setq solarized-height-plus-4 1.0)
+(load-theme 'base16-eighties t)
 
-(setq current-theme-dark nil)
+(setq current-theme-dark t)
 (defun toggle-theme ()
   (interactive)
   (if current-theme-dark
-      (load-theme 'solarized-light t)
-      (load-theme 'solarized-dark t))
+      (load-theme 'base16-eighties t)
+      (load-theme 'base16-google-light t))
   (setq current-theme-dark (not current-theme-dark)))
 #+END_SRC
 
