@@ -405,6 +405,16 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
       org-confirm-babel-evaluate nil)
 #+END_SRC
 
+**** configure org-mode supported languages
+
+#+BEGIN_SRC emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((clojure . t)
+   (shell . t)
+   (emacs-lisp . t)))
+#+END_SRC
+
 *** eshell
 
 #+BEGIN_SRC emacs-lisp
