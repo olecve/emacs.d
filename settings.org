@@ -192,13 +192,6 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 (setq auto-save-default nil)
 #+END_SRC
 
-** Show line numbers
-
-#+BEGIN_SRC emacs-lisp
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(add-hook 'text-mode-hook 'display-line-numbers-mode)
-#+END_SRC
-
 ** whitespaces
 
 #+BEGIN_SRC emacs-lisp
