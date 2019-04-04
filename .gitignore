@@ -16,3 +16,4 @@ project-explorer-cache/
 url/cookies
 .cache/treemacs-persist
 eshell/alias
+tramp
