@@ -443,6 +443,7 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
 
 (defun my-web-mode-hook ()
   (setq web-mode-markup-indent-offset 2)
