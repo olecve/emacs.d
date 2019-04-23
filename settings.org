@@ -18,11 +18,11 @@
     sr-speedbar
     saveplace
     recentf
-    json-mode
-    magit
     markdown-mode
     google-this
     ; dev
+    magit
+    json-mode
     web-mode
     ; projects
     projectile
@@ -266,8 +266,8 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 (defun toggle-theme ()
   (interactive)
   (if current-theme-dark
-      (load-theme 'base16-eighties t)
-      (load-theme 'base16-google-light t))
+      (load-theme 'base16-google-light t)
+      (load-theme 'base16-eighties t))
   (setq current-theme-dark (not current-theme-dark)))
 #+END_SRC
 
