@@ -29,6 +29,7 @@
     project-explorer
     ; org-mode extentions
     org-bullets
+    htmlize
     ; counsel depends on ivy and swiper
     counsel
     ivy
