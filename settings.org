@@ -205,6 +205,18 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+END_SRC
 
 * Editing
+** Coding System
+
+#+BEGIN_SRC emacs-lisp
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
+;; Treat clipboard input as UTF-8 string first; compound text next, etc.
+(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+#+END_SRC
+
 ** Enable auto pairing of brackets and quotation marks
 
 #+BEGIN_SRC emacs-lisp
