@@ -17,3 +17,4 @@ url/cookies
 .cache/treemacs-persist
 eshell/alias
 tramp
+transient/history.el
