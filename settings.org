@@ -295,7 +295,7 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 (defun toggle-theme ()
   (interactive)
   (if current-theme-dark
-      (load-theme 'base16-google-light t)
+      (load-theme 'base16-atelier-cave-light t)
       (load-theme 'base16-eighties t))
   (setq current-theme-dark (not current-theme-dark)))
 #+END_SRC
