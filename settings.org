@@ -54,6 +54,7 @@
     base16-theme
     ; UI
     telephone-line
+    olivetti
     ; others
     which-key
     adaptive-wrap
@@ -360,6 +361,12 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
 (diminish 'google-this-mode)
 (diminish 'company-mode)
 (diminish 'subword-mode)
+#+END_SRC
+
+*** olivetti
+
+#+BEGIN_SRC emacs-lisp
+(setq olivetti-body-width 160)
 #+END_SRC
 
 ** Major modes
