@@ -482,6 +482,14 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
 (add-hook 'web-mode-hook 'my-web-mode-hook)
 #+END_SRC
 
+*** which key
+
+#+BEGIN_SRC emacs-lisp
+(which-key-mode t)
+(setq which-key-idle-delay 0.4)
+(setq which-key-idle-secondary-delay 0.4)
+#+END_SRC
+
 * Functions
 
 #+BEGIN_SRC emacs-lisp
