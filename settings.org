@@ -367,6 +367,7 @@ Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs
 
 #+BEGIN_SRC emacs-lisp
 (setq olivetti-body-width 160)
+(add-hook 'text-mode-hook 'olivetti-mode)
 #+END_SRC
 
 ** Major modes
