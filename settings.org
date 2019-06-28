@@ -303,15 +303,12 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 
 * Modes
 ** Minor modes
-*** flyspell (disabled as aspell not available on win)
-
-Check http://aspell.net/win32/ for dictionaries.
-Try to use this as alternative https://lists.gnu.org/archive/html/help-gnu-emacs/2014-04/msg00030.html
+*** flyspell
 
 #+BEGIN_SRC emacs-lisp
-;(custom-set-variables
-; '(ispell-program-name "c:\\Program Files (x86)\\Aspell\\bin\\aspell.exe"))
-;
+(custom-set-variables
+ '(ispell-program-name "C:\\bin\\hunspell-1.3.2-3-w32-bin\\bin\\hunspell.exe"))
+
 ; Enable Flyspell for text modes
 ;(add-hook 'text-mode-hook 'flyspell-mode)
 #+END_SRC
