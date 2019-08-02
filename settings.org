@@ -404,6 +404,7 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
                              "~/../../Dropbox/org/todo/etc.org"))
 
 (setq calendar-week-start-day 1)
+(setq org-agenda-window-setup 'only-window)
 #+END_SRC
 
 **** archive
