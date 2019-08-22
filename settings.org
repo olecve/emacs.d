@@ -400,8 +400,11 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-c a") 'org-agenda)
-(setq org-agenda-files (list "~/../../Dropbox/org/todo/home.org"
-                             "~/../../Dropbox/org/todo/etc.org"))
+
+(setq org-agenda-files
+      (list "~/../../Dropbox/org/todo/main-todo.org"
+            "~/../../Dropbox/org/todo/work-todo.org"
+            "~/../../Dropbox/org/todo/projects-todo.org"))
 
 (setq calendar-week-start-day 1)
 (setq org-agenda-window-setup 'only-window)
