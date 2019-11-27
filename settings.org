@@ -370,6 +370,17 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 
 ** Major modes
 *** org
+**** org-todo more states
+
+#+BEGIN_SRC emacs-lisp
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "|" "DONE(d)")
+        (sequence "BLOCK(b)")))
+
+(setq org-todo-keyword-faces
+      (quote (("BLOCK" :foreground "red" :weight bold))))
+#+END_SRC
+
 **** Enable done log
 
 #+BEGIN_SRC emacs-lisp
