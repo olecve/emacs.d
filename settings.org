@@ -24,6 +24,7 @@
     magit
     json-mode
     web-mode
+    plantuml-mode
     ; projects
     projectile
     project-explorer
@@ -493,6 +494,10 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 (setq which-key-idle-secondary-delay 0.4)
 #+END_SRC
 
+*** plantuml-mode
+#+BEGIN_SRC emacs-lisp
+(setq plantuml-default-exec-mode 'jar)
+#+END_SRC
 * Functions
 
 #+BEGIN_SRC emacs-lisp
