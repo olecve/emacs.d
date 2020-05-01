@@ -19,3 +19,6 @@ eshell/alias
 tramp
 transient/history.el
 bookmarks
+/network-security.data
+/server/
+/url/
