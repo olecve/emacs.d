@@ -414,9 +414,8 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 (setq org-agenda-files
-      (list "~/../../Dropbox/org/todo/main-todo.org"
-            "~/../../Dropbox/org/todo/work-todo.org"
-            "~/../../Dropbox/org/todo/projects-todo.org"))
+      (append (directory-files-recursively "~/../../Dropbox/org/todo" ".org$")
+              (directory-files-recursively "~/../../Dropbox/org/projects" ".org$")))
 
 (setq calendar-week-start-day 1)
 (setq org-agenda-window-setup 'only-window)
