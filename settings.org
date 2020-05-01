@@ -375,10 +375,12 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords
       '((sequence "TODO(t)" "|" "DONE(d)")
-        (sequence "BLOCK(b)")))
+        (sequence "BLOCK(b)" "|" "CANCELLED(c)" "|" "HOLD(h)")))
 
 (setq org-todo-keyword-faces
-      (quote (("BLOCK" :foreground "red" :weight bold))))
+      '(("BLOCK" :foreground "red" :weight bold)
+        ("CANCELLED" :foreground "#00adad")
+        ("HOLD" :foreground "#007070")))
 #+END_SRC
 
 **** Enable done log
