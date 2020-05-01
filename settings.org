@@ -461,6 +461,8 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
  '((clojure . t)
    (shell . t)
    (emacs-lisp . t)))
+(require 'ob-clojure)
+(setq org-babel-clojure-backend 'cider)
 #+END_SRC
 
 *** eshell
