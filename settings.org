@@ -486,12 +486,11 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+END_SRC
 
 *** web-mode
-**** use 2 spaces for indent
 
 #+BEGIN_SRC emacs-lisp
 (require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.js[x]\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 
 (defun my-web-mode-hook ()
   (setq web-mode-markup-indent-offset 2)
