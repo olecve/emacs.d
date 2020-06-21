@@ -423,9 +423,17 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 (setq org-agenda-files
       (append (directory-files-recursively "~/../../Dropbox/org/todo" ".org$")
               (directory-files-recursively "~/../../Dropbox/org/projects" ".org$")))
-
 (setq calendar-week-start-day 1)
 (setq org-agenda-window-setup 'only-window)
+
+(setq org-agenda-custom-commands
+      '(("d" "Personal schedule"
+         ((tags "PRIORITY=\"A\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "High-priority unfinished tasks")))
+          (agenda "")
+          (todo "NEXT"
+                ((org-agenda-overriding-header "Next tasks")))))))
 #+END_SRC
 
 **** archive
