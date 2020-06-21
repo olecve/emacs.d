@@ -289,16 +289,22 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+END_SRC
 
 ** Theme
+   - Examples of all available base16 themes https://belak.github.io/base16-emacs/
+   - good light options: base16-atelier-cave-light, base16-atelier-plateau-light, base16-atelier-savanna-light
+   - good dark options: base16-eighties, base16-flat
 
 #+BEGIN_SRC emacs-lisp
-(load-theme 'base16-eighties t)
+(setq light-theme 'base16-atelier-savanna-light)
+(setq dark-theme 'base16-eighties)
+
+(load-theme dark-theme t)
 
 (setq current-theme-dark t)
 (defun toggle-theme ()
   (interactive)
   (if current-theme-dark
-      (load-theme 'base16-atelier-cave-light t)
-      (load-theme 'base16-eighties t))
+      (load-theme light-theme t)
+      (load-theme dark-theme t))
   (setq current-theme-dark (not current-theme-dark)))
 #+END_SRC
 
