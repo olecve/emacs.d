@@ -386,7 +386,9 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 
 (setq org-todo-keyword-faces
       '(("CANCELLED" :foreground "#00adad")
-        ("HOLD" :foreground "#007070")))
+        ("HOLD" :foreground "#007070")
+        ("NEXT" :foreground "magenta" :weight boldd)
+        ("IN-PROGRESS" :foreground "forest green" :weight bold)))
 #+END_SRC
 
 **** Enable done log
@@ -430,8 +432,8 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 (setq org-agenda-custom-commands
       '(("d" "Personal schedule"
          ((tags "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "High-priority unfinished tasks")))
+                ((org-agenda-overriding-header "High-priority unfinished tasks")
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("TODO" "DONE" "NEXT" "CANCELLED")))))
           (agenda "")
           (todo "NEXT"
                 ((org-agenda-overriding-header "Next tasks")))))))
