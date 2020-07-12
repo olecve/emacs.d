@@ -21,6 +21,7 @@
     markdown-mode
     google-this
     ; dev
+    hungry-delete
     magit
     json-mode
     web-mode
@@ -626,4 +627,7 @@ some non-standard editing and utility commands for Emacs
 (global-set-key (kbd "C-x t M-t")      'treemacs-find-tag)
 (global-set-key (kbd "C-c C-d")        'duplicate-line)
 (define-key org-mode-map "\M-q"        'visual-line-mode)
+
+(global-set-key (kbd "C-c <backspace>")  'hungry-delete-backward)
+(global-set-key (kbd "C-c <deletechar>") 'hungry-delete-forward)
 #+END_SRC
