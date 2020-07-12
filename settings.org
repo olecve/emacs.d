@@ -523,9 +523,11 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+END_SRC
 
 *** plantuml-mode
+
 #+BEGIN_SRC emacs-lisp
 (setq plantuml-default-exec-mode 'jar)
 #+END_SRC
+
 * Functions
 
 #+BEGIN_SRC emacs-lisp
