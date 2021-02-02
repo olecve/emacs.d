@@ -32,6 +32,7 @@
     ; org-mode extentions
     org-bullets
     htmlize
+    ox-reveal
     ; counsel depends on ivy and swiper
     counsel
     ivy
@@ -481,6 +482,12 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
    (emacs-lisp . t)))
 (require 'ob-clojure)
 (setq org-babel-clojure-backend 'cider)
+#+END_SRC
+
+**** enable reaveal.js export
+
+#+BEGIN_SRC emacs-lisp
+(require 'ox-reveal)
 #+END_SRC
 
 *** eshell
