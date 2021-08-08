@@ -423,22 +423,27 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 **** org-agenda
 
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-c a") 'org-agenda)
+  (global-set-key (kbd "C-c a") 'org-agenda)
 
-(setq org-agenda-files
-      (append (directory-files-recursively "~/Dropbox/org/todo" ".org$")
-              (directory-files-recursively "~/Dropbox/org/work/projects" ".org$")))
-(setq calendar-week-start-day 1)
-(setq org-agenda-window-setup 'only-window)
+  (setq org-agenda-files
+      (cond ((eq system-type 'darwin)
+             (append (directory-files-recursively "~/Dropbox/org/todo" ".org$")
+                     (directory-files-recursively "~/Dropbox/org/work/projects" ".org$")))
+            ((eq system-type 'windows-nt)
+             (append (directory-files-recursively "~/../../Dropbox/org/todo" ".org$")
+                     (directory-files-recursively "~/../../Dropbox/org/work/projects" ".org$")))))
 
-(setq org-agenda-custom-commands
-      '(("d" "Personal schedule"
-         ((tags "PRIORITY=\"A\""
-                ((org-agenda-overriding-header "High-priority unfinished tasks")
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("TODO" "DONE" "NEXT" "CANCELLED")))))
-          (agenda "")
-          (todo "NEXT"
-                ((org-agenda-overriding-header "Next tasks")))))))
+  (setq calendar-week-start-day 1)
+  (setq org-agenda-window-setup 'only-window)
+
+  (setq org-agenda-custom-commands
+        '(("d" "Personal schedule"
+           ((tags "PRIORITY=\"A\""
+                  ((org-agenda-overriding-header "High-priority unfinished tasks")
+                   (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("TODO" "DONE" "NEXT" "CANCELLED")))))
+            (agenda "")
+            (todo "NEXT"
+                  ((org-agenda-overriding-header "Next tasks")))))))
 #+END_SRC
 
 **** archive
