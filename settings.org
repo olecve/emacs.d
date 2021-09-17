@@ -427,11 +427,11 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 
   (setq org-agenda-files
       (cond ((eq system-type 'darwin)
-             (append (directory-files-recursively "~/Dropbox/org/todo" ".org$")
-                     (directory-files-recursively "~/Dropbox/org/work/projects" ".org$")))
+             (append (directory-files-recursively "~/OneDrive/org/todo" ".org$")
+                     (directory-files-recursively "~/OneDrive/org/work/projects" ".org$")))
             ((eq system-type 'windows-nt)
-             (append (directory-files-recursively "~/../../Dropbox/org/todo" ".org$")
-                     (directory-files-recursively "~/../../Dropbox/org/work/projects" ".org$")))))
+             (append (directory-files-recursively "~/../../OneDrive/org/todo" ".org$")
+                     (directory-files-recursively "~/../../OneDrive/org/work/projects" ".org$")))))
 
   (setq calendar-week-start-day 1)
   (setq org-agenda-window-setup 'only-window)
