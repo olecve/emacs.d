@@ -373,7 +373,7 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 
 #+BEGIN_SRC emacs-lisp
 (setq olivetti-body-width 160)
-;; disable olivetty for text mode 
+;; disable olivetty for text mode
 ;; (add-hook 'text-mode-hook 'olivetti-mode)
 #+END_SRC
 
@@ -505,6 +505,12 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+BEGIN_SRC emacs-lisp
 (require 'ox-reveal)
 #+END_SRC
+
+**** enable templates insertion shortcuts
+
+#+begin_src emacs-lisp
+(require 'org-tempo)
+#+end_src
 
 *** eshell
 
