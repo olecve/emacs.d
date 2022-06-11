@@ -56,6 +56,7 @@
     solarized-theme
     base16-theme
     ; UI
+    ace-window
     telephone-line
     olivetti
     ; others
@@ -665,4 +666,6 @@ some non-standard editing and utility commands for Emacs
 
 (global-set-key (kbd "C-c <backspace>")  'hungry-delete-backward)
 (global-set-key (kbd "C-c <deletechar>") 'hungry-delete-forward)
+
+(global-set-key (kbd "M-o") 'ace-window)
 #+END_SRC
