@@ -385,12 +385,13 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords
       '((sequence "TODO(t)" "|" "DONE(d)")
-        (sequence "NEXT(n)" "IN-PROGRESS(p)" "HOLD(h)" "|" "CANCELLED(c)")))
+        (sequence "NEXT(n)" "IN-PROGRESS(p)" "REVIEW(r)" "HOLD(h)" "|" "CANCELLED(c)")))
 
 (setq org-todo-keyword-faces
       '(("CANCELLED" :foreground "#00adad")
         ("HOLD" :foreground "#007070")
         ("NEXT" :foreground "magenta" :weight boldd)
+        ("REVIEW" :foreground "green" :weight bold)
         ("IN-PROGRESS" :foreground "forest green" :weight bold)))
 #+END_SRC
 
