@@ -87,6 +87,33 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
   (setq auto-save-default nil)
 #+end_src
 
+* Org-Mode
+** Bullets
+
+#+begin_src emacs-lisp
+  (use-package org-superstar
+    :after org
+    :hook (org-mode . org-superstar-mode)
+    :custom
+    (org-superstar-remove-leading-stars nil)
+    (org-superstar-leading-bullet ?\s)
+    (org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●" "○" "●")))
+#+end_src
+
+** Block Templates
+
+#+begin_src emacs-lisp
+;; This is needed as of Org 9.2
+(require 'org-tempo)
+
+(add-to-list 'org-structure-template-alist '("sh" . "src sh"))
+(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+(add-to-list 'org-structure-template-alist '("ts" . "src typescript"))
+(add-to-list 'org-structure-template-alist '("py" . "src python"))
+(add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
+(add-to-list 'org-structure-template-alist '("json" . "src json"))
+#+end_src
+
 * Other
 
 #+begin_src emacs-lisp
