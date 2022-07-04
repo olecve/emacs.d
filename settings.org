@@ -1,7 +1,7 @@
 #+title: Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :mkdirp yes
 
-* Packages
+* Package Management
 
 #+begin_src emacs-lisp
 ;; Initialize package sources
@@ -23,14 +23,15 @@
 (setq use-package-always-ensure t)
 #+end_src
 
-* Basic UI Configuration
+* General Configuration
+** User interface
 
 #+begin_src emacs-lisp
 (setq inhibit-startup-message t)
 
 ;; Turn off unneeded UI elements
 (when (display-graphic-p)
-  (menu-bar-mode -1)
+  (menu-bar-mode -1) ; disable menu bar
   (tool-bar-mode -1))
 
 (scroll-bar-mode -1)
@@ -51,6 +52,28 @@
 	 (t nil)))
 #+END_SRC
 
+** Theme
+
+   - Examples of all available base16 themes https://belak.github.io/base16-emacs/
+     - Alternate light: base16-atelier-cave-light, base16-atelier-plateau-light, base16-atelier-savanna-light, base16-atelier-lakeside-light
+     - Alternate dark: base16-eighties, base16-flat
+   - =doom-snazzy=
+   - =doom-vibrant=
+   - A nice gallery of Emacs themes can be found at https://emacsthemes.com/.
+
+#+begin_src emacs-lisp
+  (use-package solarized-theme :defer t)
+  (use-package base16-theme :defer t)
+  (use-package spacegray-theme :defer t)
+  (use-package doom-themes :defer t)
+
+  (setq light-theme 'base16-atelier-lakeside-light)
+  (setq dark-theme 'base16-eighties)
+
+  ;; (load-theme 'modus-vivendi t)
+  (load-theme 'doom-palenight t)
+#+end_src
+
 * Keep .emacs.d Clean
 
 ** Save all backups to ~/.emacs.d/backup
@@ -67,8 +90,6 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 * Other
 
 #+begin_src emacs-lisp
-(load-theme 'modus-vivendi t)
-
 (setq recentf-save-file (concat user-emacs-directory ".recentf"))
 (setq recentf-max-menu-items 25)
 (recentf-mode 1)
