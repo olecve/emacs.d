@@ -27,17 +27,53 @@
 ** User interface
 
 #+begin_src emacs-lisp
-(setq inhibit-startup-message t)
+  (setq inhibit-startup-message t)
 
-;; Turn off unneeded UI elements
-(when (display-graphic-p)
-  (menu-bar-mode -1) ; disable menu bar
-  (tool-bar-mode -1))
+  (scroll-bar-mode -1)    ; Disable visible scrollbar
+  (menu-bar-mode -1)      ; Disable the menu bar
+  (tool-bar-mode -1)      ; Disable the toolbar
+  (tooltip-mode -1)       ; Disable tooltips
+  (set-fringe-mode 10)    ; Give some breathing room
+  (blink-cursor-mode 0)   ; Disabled blinking cursor
 
-(scroll-bar-mode -1)
+  (setq-default cursor-type 'bar)             ; Change type of cursor
+  (setq-default frame-title-format "%b (%f)") ; Show full path to file in title bar
+  (setq-default initial-scratch-message "")   ; Empty the initial *scratch* buffer
 
-;; Display line number in every buffer
-(global-display-line-numbers-mode t)
+  (defalias 'yes-or-no-p 'y-or-n-p)  ; Save typing chars when answering yes-or-no-p questions
+
+  (global-hl-line-mode)              ; Hightlight current line
+  (delete-selection-mode)            ; Replace region when inserting text
+#+end_src
+
+#+RESULTS:
+: yes-or-no-p
+
+Improve scrolling.
+
+#+begin_src emacs-lisp
+  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ; one line at a time
+  (setq mouse-wheel-progressive-speed nil)            ; don't accelerate scrolling
+  (setq mouse-wheel-follow-mouse 't)                  ; scroll window under mouse
+  (setq scroll-margin 2)                              ; Add a margin when scrolling vertically
+  (setq scroll-step 1)                                ; keyboard scroll one line at a time
+  (setq use-dialog-box nil)                           ; Disable dialog boxes since they weren't working in Mac OSX
+#+end_src
+
+Enable line numbers and customize their format.
+
+#+begin_src emacs-lisp
+(column-number-mode)
+
+;; Enable line numbers for some modes
+(dolist (mode '(text-mode-hook
+                prog-mode-hook
+                conf-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 1))))
+
+;; Override some modes which derive from the above
+(dolist (mode '(org-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
 
 ** Default font
@@ -112,6 +148,47 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 (add-to-list 'org-structure-template-alist '("py" . "src python"))
 (add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
 (add-to-list 'org-structure-template-alist '("json" . "src json"))
+#+end_src
+
+** More TODO states
+
+#+begin_src emacs-lisp
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "|" "DONE(d)")
+        (sequence "NEXT(n)" "IN-PROGRESS(p)" "REVIEW(r)" "HOLD(h)" "|" "CANCELLED(c)")))
+
+(setq org-todo-keyword-faces
+      '(("CANCELLED" :foreground "#00adad")
+        ("HOLD" :foreground "#007070")
+        ("NEXT" :foreground "magenta" :weight boldd)
+        ("REVIEW" :foreground "green" :weight bold)
+        ("IN-PROGRESS" :foreground "forest green" :weight bold)))
+#+end_src
+
+** org-agenda
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-c a") 'org-agenda)
+
+(setq org-agenda-files
+    (cond ((eq system-type 'darwin)
+           (append (directory-files-recursively "~/OneDrive/org/todo" ".org$")
+                   (directory-files-recursively "~/OneDrive/org/work/projects" ".org$")))
+          ((eq system-type 'windows-nt)
+           (append (directory-files-recursively "~/../../OneDrive/org/todo" ".org$")
+                   (directory-files-recursively "~/../../OneDrive/org/work/projects" ".org$")))))
+
+(setq calendar-week-start-day 1)
+(setq org-agenda-window-setup 'only-window)
+
+(setq org-agenda-custom-commands
+      '(("d" "Personal schedule"
+         ((tags "PRIORITY=\"A\""
+                ((org-agenda-overriding-header "High-priority unfinished tasks")
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("TODO" "DONE" "NEXT" "CANCELLED")))))
+          (agenda "")
+          (todo "NEXT"
+                ((org-agenda-overriding-header "Next tasks")))))))
 #+end_src
 
 * Other
