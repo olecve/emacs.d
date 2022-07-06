@@ -23,6 +23,17 @@
 (setq use-package-always-ensure t)
 #+end_src
 
+* General Packages
+** Expand region
+
+#+begin_src emacs-lisp
+  (use-package expand-region
+    :ensure t
+    :bind
+    ("C-=" . er/expand-region)
+    ("C--" . er/contract-region))
+#+end_src
+
 * General Configuration
 ** User interface
 
@@ -220,18 +231,62 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
   :custom ((doom-modeline-height 15)))
 #+end_src
 
+* Functions
+
+#+begin_src emacs-lisp
+(defun olecve/move-line-up ()
+  "Move up the current line."
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2)
+  (indent-according-to-mode))
+
+(defun olecve/move-line-down ()
+  "Move down the current line."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+(defun olecve/split-window-below-and-switch ()
+  (interactive)
+  (split-window-below)
+  (other-window 1))
+
+(defun olecve/split-window-right-and-switch ()
+  (interactive)
+  (split-window-right)
+  (other-window 1))
+
+(defun olecve/duplicate-line()
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank))
+#+end_src
+
 * Key bindings
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C--")            'text-scale-decrease)
-  (global-set-key (kbd "C-=")            'text-scale-increase)
+  (global-set-key (kbd "<escape>")       'keyboard-escape-quit)          ; ESC cancels all
+
+  (global-set-key [f12]                  'menu-bar-mode)                 ; F12 shows menu bar
+
+  (global-set-key (kbd "M--")            'text-scale-decrease)
+  (global-set-key (kbd "M-=")            'text-scale-increase)
+
   (global-set-key (kbd "S-<down>")       'windmove-down)
   (global-set-key (kbd "S-<left>")       'windmove-left)
   (global-set-key (kbd "S-<right>")      'windmove-right)
   (global-set-key (kbd "S-<up>")         'windmove-up)
-  (global-set-key [(control shift up)]   'move-line-up)
-  (global-set-key [(control shift down)] 'move-line-down)
-  (global-set-key (kbd "C-x 2")          'split-window-below-and-switch)
-  (global-set-key (kbd "C-x 3")          'split-window-right-and-switch)
-  (global-set-key [f12]                  'menu-bar-mode)
+  (global-set-key (kbd "C-x 2")          'olecve/split-window-below-and-switch)
+  (global-set-key (kbd "C-x 3")          'olecve/split-window-right-and-switch)
+
+  (global-set-key [(control shift up)]   'olecve/move-line-up)
+  (global-set-key [(control shift down)] 'olecve/move-line-down)
+  (global-set-key (kbd "C-c C-d")        'olecve/duplicate-line)
 #+end_src
