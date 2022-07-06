@@ -26,6 +26,8 @@
 * General Configuration
 ** User interface
 
+Override defaults
+
 #+begin_src emacs-lisp
   (setq inhibit-startup-message t)
 
@@ -39,15 +41,13 @@
   (setq-default cursor-type 'bar)             ; Change type of cursor
   (setq-default frame-title-format "%b (%f)") ; Show full path to file in title bar
   (setq-default initial-scratch-message "")   ; Empty the initial *scratch* buffer
-
+  (setq-default indicate-buffer-boundaries 'left)
+  
   (defalias 'yes-or-no-p 'y-or-n-p)  ; Save typing chars when answering yes-or-no-p questions
 
   (global-hl-line-mode)              ; Hightlight current line
   (delete-selection-mode)            ; Replace region when inserting text
 #+end_src
-
-#+RESULTS:
-: yes-or-no-p
 
 Improve scrolling.
 
@@ -214,10 +214,24 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 ;; Revert Dired and other buffers
 (setq global-auto-revert-non-file-buffers t)
 
-(setq-default indicate-buffer-boundaries 'left)
-
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
+#+end_src
+
+* Key bindings
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C--")            'text-scale-decrease)
+  (global-set-key (kbd "C-=")            'text-scale-increase)
+  (global-set-key (kbd "S-<down>")       'windmove-down)
+  (global-set-key (kbd "S-<left>")       'windmove-left)
+  (global-set-key (kbd "S-<right>")      'windmove-right)
+  (global-set-key (kbd "S-<up>")         'windmove-up)
+  (global-set-key [(control shift up)]   'move-line-up)
+  (global-set-key [(control shift down)] 'move-line-down)
+  (global-set-key (kbd "C-x 2")          'split-window-below-and-switch)
+  (global-set-key (kbd "C-x 3")          'split-window-right-and-switch)
+  (global-set-key [f12]                  'menu-bar-mode)
 #+end_src
