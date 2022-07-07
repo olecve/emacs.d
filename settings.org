@@ -49,6 +49,7 @@ Override defaults
   (set-fringe-mode 10)    ; Give some breathing room
   (blink-cursor-mode 0)   ; Disabled blinking cursor
 
+  (setq-default ring-bell-function 'ignore)   ; Disable bell
   (setq-default cursor-type 'bar)             ; Change type of cursor
   (setq-default frame-title-format "%b (%f)") ; Show full path to file in title bar
   (setq-default initial-scratch-message "")   ; Empty the initial *scratch* buffer
