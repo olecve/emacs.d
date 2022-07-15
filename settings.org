@@ -136,6 +136,17 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+end_src
 
 * Org-Mode
+** Org Configuration
+
+#+begin_src emacs-lisp
+  (defun org-mode-setup ()
+    (org-indent-mode))
+
+  (use-package org
+    :defer t
+    :hook (org-mode . org-mode-setup))
+#+end_src
+   
 ** Bullets
 
 #+begin_src emacs-lisp
