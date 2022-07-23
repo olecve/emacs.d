@@ -355,4 +355,6 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
   (global-set-key [(control shift up)]   'olecve/move-line-up)
   (global-set-key [(control shift down)] 'olecve/move-line-down)
   (global-set-key (kbd "C-c C-d")        'olecve/duplicate-line)
+
+  (global-set-key [f7]                   'olecve/toggle-theme)
 #+end_src
