@@ -118,7 +118,14 @@ Enable line numbers and customize their format.
   (setq light-theme 'base16-atelier-lakeside-light)
   (setq dark-theme 'base16-eighties)
 
-  ;; (load-theme 'modus-vivendi t)
+  (setq current-theme-dark t)
+  (defun olecve/toggle-theme ()
+    (interactive)
+    (if current-theme-dark
+        (load-theme light-theme t)
+      (load-theme dark-theme t))
+    (setq current-theme-dark (not current-theme-dark)))
+
   (load-theme 'doom-palenight t)
 #+end_src
 
@@ -281,7 +288,7 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
   (yank))
 #+end_src
 
-* Key bindings
+* Key Bindings
 
 #+begin_src emacs-lisp
   (global-set-key (kbd "<escape>")       'keyboard-escape-quit)          ; ESC cancels all
