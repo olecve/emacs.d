@@ -129,6 +129,25 @@ Enable line numbers and customize their format.
   (load-theme 'doom-palenight t)
 #+end_src
 
+* Completion System
+
+#+begin_src emacs-lisp
+  (use-package ivy
+    :init
+    (ivy-mode 1)
+    (setq ivy-height 10
+          ivy-use-virtual-buffers t
+          ivy-use-selectable-prompt t
+          ivy-extra-directories t ; hide ../ and ./
+          ivy-initial-inputs-alist nil)) ; remove ^ from initial input of M-x
+
+  (use-package counsel
+    :after ivy
+    :init
+    (counsel-mode 1)
+    :bind (:map ivy-minibuffer-map))
+#+end_src
+
 * Keep .emacs.d Clean
 
 ** Save all backups to ~/.emacs.d/backup
