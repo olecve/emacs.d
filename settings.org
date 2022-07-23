@@ -118,7 +118,7 @@ Enable line numbers and customize their format.
   ; (setq light-theme 'base16-atelier-lakeside-light)
   ; (setq dark-theme 'base16-eighties)
 
-  (setq light-theme 'doom-nord-light)
+  (setq light-theme 'doom-gruvbox-light)
   (setq dark-theme 'doom-palenight)
 
   (load-theme dark-theme t)
