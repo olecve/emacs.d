@@ -142,7 +142,9 @@ Enable line numbers and customize their format.
           ivy-use-virtual-buffers t
           ivy-use-selectable-prompt t
           ivy-extra-directories t ; hide ../ and ./
-          ivy-initial-inputs-alist nil)) ; remove ^ from initial input of M-x
+          ivy-initial-inputs-alist nil) ; remove ^ from initial input of M-x
+    :bind
+    ("\C-s" . 'swiper))
 
   (use-package counsel
     :after ivy
