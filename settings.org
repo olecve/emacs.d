@@ -115,8 +115,13 @@ Enable line numbers and customize their format.
   (use-package spacegray-theme :defer t)
   (use-package doom-themes :defer t)
 
-  (setq light-theme 'base16-atelier-lakeside-light)
-  (setq dark-theme 'base16-eighties)
+  ; (setq light-theme 'base16-atelier-lakeside-light)
+  ; (setq dark-theme 'base16-eighties)
+
+  (setq light-theme 'doom-nord-light)
+  (setq dark-theme 'doom-palenight)
+
+  (load-theme dark-theme t)
 
   (setq current-theme-dark t)
   (defun olecve/toggle-theme ()
@@ -125,8 +130,6 @@ Enable line numbers and customize their format.
         (load-theme light-theme t)
       (load-theme dark-theme t))
     (setq current-theme-dark (not current-theme-dark)))
-
-  (load-theme 'doom-palenight t)
 #+end_src
 
 * Completion System
