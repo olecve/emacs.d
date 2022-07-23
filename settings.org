@@ -136,6 +136,7 @@ Enable line numbers and customize their format.
 
 #+begin_src emacs-lisp
   (use-package ivy
+    :diminish
     :init
     (ivy-mode 1)
     (setq ivy-height 10
@@ -245,6 +246,13 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
                 ((org-agenda-overriding-header "Next tasks")))))))
 #+end_src
 
+* Development
+** Productivity
+*** Rainbow Delimiters
+#+begin_src emacs-lisp
+  (use-package rainbow-delimiters
+    :hook (prog-mode . rainbow-delimiters-mode))
+#+end_src
 * Other
 
 #+begin_src emacs-lisp
@@ -313,6 +321,17 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+end_src
 
 * Key Bindings
+** which-key
+
+#+begin_src emacs-lisp
+  (use-package which-key
+    :init (which-key-mode)
+    :diminish which-key-mode
+    :config
+    (setq which-key-idle-delay 0.5))
+#+end_src
+
+** Key Bindings Customisations
 
 #+begin_src emacs-lisp
   (global-set-key (kbd "<escape>")       'keyboard-escape-quit)          ; ESC cancels all
