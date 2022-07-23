@@ -152,6 +152,10 @@ Enable line numbers and customize their format.
     :init
     (counsel-mode 1)
     :bind (:map ivy-minibuffer-map))
+
+  (use-package ivy-rich
+    :init
+    (ivy-rich-mode 1))
 #+end_src
 
 * Keep .emacs.d Clean
