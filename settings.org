@@ -140,9 +140,10 @@ Enable line numbers and customize their format.
     :init
     (ivy-mode 1)
     (setq ivy-height 10
+          ivy-count-format "(%d/%d) "   ; change counter formar
           ivy-use-virtual-buffers t
           ivy-use-selectable-prompt t
-          ivy-extra-directories () ; hide ../ and ./
+          ivy-extra-directories ()      ; hide ../ and ./
           ivy-initial-inputs-alist nil) ; remove ^ from initial input of M-x
     :bind
     ("C-s" . 'swiper))
@@ -253,10 +254,12 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 * Development
 ** Productivity
 *** Rainbow Delimiters
+
 #+begin_src emacs-lisp
   (use-package rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
 #+end_src
+
 * Other
 
 #+begin_src emacs-lisp
