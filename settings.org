@@ -95,7 +95,7 @@ Enable line numbers and customize their format.
 	(cond
 	 ((eq system-type 'windows-nt)
 	  (progn
-	    (set-face-attribute 'default nil :family "Consolas" :height 100)
+	    (set-face-attribute 'default nil :family "Cascadia Code" :height 100)
 	    (set-face-attribute 'italic nil :underline nil)))
 	 (t nil)))
 #+END_SRC
