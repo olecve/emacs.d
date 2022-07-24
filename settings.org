@@ -23,6 +23,31 @@
 (setq use-package-always-ensure t)
 #+end_src
 
+* Keep .emacs.d Clean
+
+** Save all backups to ~/.emacs.d/backup
+
+Emacs can automatically create backup files. This tells Emacs to
+put all backups in ~/.emacs.d/backups. More info:
+http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
+
+#+begin_src emacs-lisp
+  (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
+  (setq auto-save-default nil)
+#+end_src
+
+* Default Coding System
+
+#+begin_src emacs-lisp
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
+; Treat clipboard input as UTF-8 string first; compound text next, etc.
+(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+#+end_src
+
 * General Packages
 ** Expand region
 
@@ -159,19 +184,6 @@ Enable line numbers and customize their format.
     (ivy-rich-mode 1))
 #+end_src
 
-* Keep .emacs.d Clean
-
-** Save all backups to ~/.emacs.d/backup
-
-Emacs can automatically create backup files. This tells Emacs to
-put all backups in ~/.emacs.d/backups. More info:
-http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
-
-#+begin_src emacs-lisp
-  (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
-  (setq auto-save-default nil)
-#+end_src
-
 * Org-Mode
 ** Org Configuration
 
@@ -275,6 +287,34 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 #+begin_src emacs-lisp
   (use-package rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
+#+end_src
+
+** Languages
+*** Language Server Support
+
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :commands (lsp lsp-deferred)
+    :init
+    (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
+    (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+    (lsp-headerline-breadcrumb-mode)
+    :config
+    (lsp-enable-which-key-integration t))
+
+  (use-package lsp-treemacs
+    :after lsp)
+#+end_src
+
+*** Clojure
+
+#+begin_src emacs-lisp
+  (use-package clojure-mode
+    :mode "\\.clj\\'"
+    :init
+    (add-hook 'clojure-mode-hook #'lsp)
+    (add-hook 'clojurec-mode-hook #'lsp)
+    (add-hook 'clojurescript-mode-hook #'lsp))
 #+end_src
 
 * Other
