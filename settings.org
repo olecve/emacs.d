@@ -315,6 +315,10 @@ Enable line numbers and customize their format.
     (add-hook 'clojure-mode-hook #'lsp)
     (add-hook 'clojurec-mode-hook #'lsp)
     (add-hook 'clojurescript-mode-hook #'lsp))
+
+  (use-package cider)
+  (use-package flycheck)
+  (use-package company)
 #+end_src
 
 * Other
