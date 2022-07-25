@@ -302,6 +302,11 @@ Enable line numbers and customize their format.
     :config
     (lsp-enable-which-key-integration t))
 
+  (use-package lsp-ui
+    :hook (lsp-mode . lsp-ui-mode)
+    :custom
+    (lsp-ui-doc-position 'bottom))
+
   (use-package lsp-treemacs
     :after lsp)
 #+end_src
@@ -316,9 +321,27 @@ Enable line numbers and customize their format.
     (add-hook 'clojurec-mode-hook #'lsp)
     (add-hook 'clojurescript-mode-hook #'lsp))
 
-  (use-package cider)
-  (use-package flycheck)
-  (use-package company)
+  (use-package cider
+    :ensure t)
+
+  (use-package company
+    :after lsp-mode
+    :hook (lsp-mode . company-mode)
+    :bind
+    (:map company-active-map
+          ("<tab>" . company-complete-selection))
+    (:map lsp-mode-map
+          ("<tab>" . company-indent-or-complete-common))
+    :custom
+    (company-minimum-prefix-length 1)
+    (company-idle-delay 0.0))
+
+  (use-package company-box
+    :hook (company-mode . company-box-mode))
+
+  (use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode))
 #+end_src
 
 * Other
