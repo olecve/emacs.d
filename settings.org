@@ -227,7 +227,7 @@ Enable line numbers and customize their format.
 #+begin_src emacs-lisp
 (setq org-todo-keywords
       '((sequence "TODO(t)" "|" "DONE(d)")
-        (sequence "NEXT(n)" "IN-PROGRESS(p)" "REVIEW(r)" "HOLD(h)" "|" "CANCELLED(c)")))
+        (sequence "NEXT(n)" "IN-PROGRESS(i)" "REVIEW(r)" "HOLD(h)" "|" "CANCELLED(c)")))
 
 (setq org-todo-keyword-faces
       '(("CANCELLED" :foreground "#00adad")
