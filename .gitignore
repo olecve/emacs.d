@@ -23,3 +23,7 @@ bookmarks
 /server/
 /url/
 .cache
+%backup%~
+.lsp-session-v1
+history
+recentf
