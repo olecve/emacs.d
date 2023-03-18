@@ -208,6 +208,18 @@ Enable line numbers and customize their format.
     (org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●" "○" "●")))
 #+end_src
 
+** Center org buffers
+
+#+begin_src emacs-lisp
+  (defun olecve/org-mode-visual-fill ()
+    (setq visual-fill-column-width 120
+          visual-fill-column-center-text t)
+    (visual-fill-column-mode 1))
+
+  (use-package visual-fill-column
+    :hook (org-mode . olecve/org-mode-visual-fill))
+#+end_src
+
 ** Block Templates
 
 #+begin_src emacs-lisp
@@ -235,6 +247,13 @@ Enable line numbers and customize their format.
         ("NEXT" :foreground "magenta" :weight boldd)
         ("REVIEW" :foreground "green" :weight bold)
         ("IN-PROGRESS" :foreground "forest green" :weight bold)))
+#+end_src
+
+** Improve log
+
+#+begin_src emacs-lisp
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
 #+end_src
 
 ** org-agenda
