@@ -309,6 +309,23 @@ Enable line numbers and customize their format.
 #+end_src
 
 ** Languages
+*** Projectile
+
+#+begin_src emacs-lisp
+  (use-package projectile
+    :diminish projectile-mode
+    :config (projectile-mode)
+    :demand t
+    :bind ("C-M-p" . projectile-find-file)
+    :bind-keymap ("C-c p" . projectile-command-map))
+
+  (use-package counsel-projectile
+    :disabled
+    :after projectile
+    :config
+    (counsel-projectile-mode))
+#+end_src
+
 *** Language Server Support
 
 #+begin_src emacs-lisp
