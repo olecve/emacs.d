@@ -1,4 +1,5 @@
 #+title: Emacs Configuration
+#+STARTUP: overview
 #+PROPERTY: header-args:emacs-lisp :mkdirp yes
 
 * Package Management
