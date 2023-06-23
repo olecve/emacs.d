@@ -301,6 +301,14 @@ Enable line numbers and customize their format.
                 ((org-agenda-overriding-header "Next tasks")))))))
 #+end_src
 
+** ox-reveal
+
+#+begin_src emacs-lisp
+  (use-package ox-reveal
+    :ensure t
+    :after org)
+#+end_src
+
 * Development
 ** Git
 *** Magit
