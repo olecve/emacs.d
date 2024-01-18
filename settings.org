@@ -72,6 +72,14 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
     ("C--" . er/contract-region))
 #+end_src
 
+** Dashoard
+
+#+begin_src emacs-lisp
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+#+end_src
 * General Configuration
 ** User interface
 
