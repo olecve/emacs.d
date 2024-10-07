@@ -293,10 +293,10 @@ Enable line numbers and customize their format.
 (setq org-agenda-files
     (cond ((eq system-type 'darwin)
            (append (directory-files-recursively "~/OneDrive/org/todo" ".org$")
-                   (directory-files-recursively "~/OneDrive/org/areas/work/projects" ".org$")))
+                   (directory-files-recursively "~/OneDrive/org/areas/work-projects" ".org$")))
           ((eq system-type 'windows-nt)
            (append (directory-files-recursively "~/../../OneDrive/org/todo" ".org$")
-                   (directory-files-recursively "~/../../OneDrive/org/areas/work/projects" ".org$")))))
+                   (directory-files-recursively "~/../../OneDrive/org/areas/work-projects" ".org$")))))
 
 (setq calendar-week-start-day 1)
 (setq org-agenda-window-setup 'only-window)
