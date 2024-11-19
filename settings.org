@@ -285,6 +285,12 @@ Enable line numbers and customize their format.
   (setq org-log-into-drawer t)
 #+end_src
 
+** Improve duration format
+
+#+begin_src emacs-lisp
+  (setq org-duration-format (quote h:mm))
+#+end_src
+
 ** org-agenda
 
 #+begin_src emacs-lisp
