@@ -45,7 +45,7 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8)
 
-  ; Treat clipboard input as UTF-8 string first; compound text next, etc.
+  ;; Treat clipboard input as UTF-8 string first; compound text next, etc.
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 #+end_src
 
@@ -72,7 +72,7 @@ http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
     ("C--" . er/contract-region))
 #+end_src
 
-** Dashoard
+** Dashboard
 
 #+begin_src emacs-lisp
   (use-package dashboard
@@ -224,7 +224,7 @@ Enable line numbers and customize their format.
     :defer t
     :hook (org-mode . org-mode-setup))
 #+end_src
-   
+
 ** Bullets
 
 #+begin_src emacs-lisp
@@ -273,7 +273,7 @@ Enable line numbers and customize their format.
 (setq org-todo-keyword-faces
       '(("CANCELLED" :foreground "#00adad")
         ("HOLD" :foreground "#007070")
-        ("NEXT" :foreground "magenta" :weight boldd)
+        ("NEXT" :foreground "magenta" :weight bold)
         ("REVIEW" :foreground "green" :weight bold)
         ("IN-PROGRESS" :foreground "forest green" :weight bold)))
 #+end_src
