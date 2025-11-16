@@ -266,16 +266,16 @@ Enable line numbers and customize their format.
 ** More TODO states
 
 #+begin_src emacs-lisp
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "|" "DONE(d)")
-        (sequence "NEXT(n)" "IN-PROGRESS(i)" "REVIEW(r)" "HOLD(h)" "|" "CANCELLED(c)")))
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "|" "DONE(d)")
+          (sequence "NEXT(n)" "IN-PROGRESS(i)" "REVIEW(r)" "|" "DONE(d)" "CANCELLED(c)" "HOLD(h)")))
 
-(setq org-todo-keyword-faces
-      '(("CANCELLED" :foreground "#00adad")
-        ("HOLD" :foreground "#007070")
-        ("NEXT" :foreground "magenta" :weight bold)
-        ("REVIEW" :foreground "green" :weight bold)
-        ("IN-PROGRESS" :foreground "forest green" :weight bold)))
+  (setq org-todo-keyword-faces
+        '(("CANCELLED" :foreground "#5B6268" :strike-through t)
+          ("HOLD" :foreground "#ecbe7b" :background "#e0ffff" :slant italic)
+          ("NEXT" :foreground "#c678dd" :weight bold)
+          ("REVIEW" :foreground "#98be65" :weight bold)
+          ("IN-PROGRESS" :foreground "#51afef" :weight bold)))
 #+end_src
 
 ** Improve log
