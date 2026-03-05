@@ -163,13 +163,8 @@ Enable line numbers and customize their format.
    - A nice gallery of Emacs themes can be found at https://emacsthemes.com/.
 
 #+begin_src emacs-lisp
-  (use-package solarized-theme :defer t)
-  (use-package base16-theme :defer t)
-  (use-package spacegray-theme :defer t)
   (use-package doom-themes :defer t)
 
-  ; (setq light-theme 'base16-atelier-lakeside-light)
-  ; (setq dark-theme 'base16-eighties)
 
   (setq light-theme 'doom-gruvbox-light)
   (setq dark-theme 'doom-palenight)
