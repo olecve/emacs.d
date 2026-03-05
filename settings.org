@@ -50,7 +50,6 @@
 #+begin_src emacs-lisp
   (use-package centaur-tabs
     :demand
-    :config
     (centaur-tabs-mode t)
     :bind
     ("C-<prior>" . centaur-tabs-backward)
@@ -72,7 +71,6 @@
 #+begin_src emacs-lisp
   (use-package dashboard
     :ensure t
-    :config
     (setq dashboard-startup-banner 1)
     (dashboard-setup-startup-hook))
 #+end_src
@@ -365,7 +363,6 @@ Enable line numbers and customize their format.
     (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
     (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
     (setq lsp-completion-provider :none) ;; use corfu via capf
-    :config
     (lsp-headerline-breadcrumb-mode)
     (lsp-enable-which-key-integration t))
 
@@ -396,29 +393,6 @@ Enable line numbers and customize their format.
     :init (global-flycheck-mode))
 #+end_src
 
-*** Scala
-
-#+begin_src emacs-lisp
-  ;; Enable scala-mode for highlighting, indentation and motion commands
-  (use-package scala-mode
-    :interpreter ("scala" . scala-mode))
-
-  ;; Enable sbt mode for executing sbt commands
-  (use-package sbt-mode
-    :commands sbt-start sbt-command
-    :config
-    ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
-    ;; allows using SPACE when in the minibuffer
-    (substitute-key-definition
-     'minibuffer-complete-word
-     'self-insert-command
-     minibuffer-local-completion-map)
-    ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
-    (setq sbt:program-options '("-Dsbt.supershell=false")))
-
-  ;; Add metals backend for lsp-mode
-  (use-package lsp-metals)
-#+end_src
 
 * Other
 
@@ -491,7 +465,6 @@ Enable line numbers and customize their format.
   (use-package which-key
     :init (which-key-mode)
     :diminish which-key-mode
-    :config
     (setq which-key-idle-delay 0.5))
 #+end_src
 
