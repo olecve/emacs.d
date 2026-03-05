@@ -301,8 +301,8 @@ Enable line numbers and customize their format.
            (append (directory-files-recursively "~/OneDrive/org/todo" ".org$")
                    (directory-files-recursively "~/OneDrive/org/areas/work-projects" ".org$")))
           ((eq system-type 'windows-nt)
-           (append (directory-files-recursively "~/../../OneDrive/org/todo" ".org$")
-                   (directory-files-recursively "~/../../OneDrive/org/areas/work-projects" ".org$")))))
+           (append (directory-files-recursively (expand-file-name "OneDrive/org/todo" (getenv "USERPROFILE")) ".org$")
+                   (directory-files-recursively (expand-file-name "OneDrive/org/areas/work-projects" (getenv "USERPROFILE")) ".org$")))))
 
 (setq calendar-week-start-day 1)
 (setq org-agenda-window-setup 'only-window)
