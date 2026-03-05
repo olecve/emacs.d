@@ -98,7 +98,7 @@ Override defaults
   (setq-default initial-scratch-message "")   ; Empty the initial *scratch* buffer
   (setq-default indicate-buffer-boundaries 'left)
 
-  (defalias 'yes-or-no-p 'y-or-n-p)  ; Save typing chars when answering yes-or-no-p questions
+  (setq use-short-answers t)              ; Use y/n instead of yes/no
 
   (global-hl-line-mode)              ; Hightlight current line
   (delete-selection-mode)            ; Replace region when inserting text
