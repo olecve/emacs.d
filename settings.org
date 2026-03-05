@@ -186,6 +186,14 @@ Enable line numbers and customize their format.
   (use-package consult
     :bind
     ("C-s" . consult-line))
+
+  (use-package corfu
+    :custom
+    (corfu-auto t)
+    (corfu-auto-delay 0.2)
+    (corfu-auto-prefix 1)
+    :init
+    (global-corfu-mode))
 #+end_src
 
 * Org-Mode
@@ -356,6 +364,7 @@ Enable line numbers and customize their format.
     :init
     (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
     (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+    (setq lsp-completion-provider :none) ;; use corfu via capf
     :config
     (lsp-headerline-breadcrumb-mode)
     (lsp-enable-which-key-integration t))
@@ -381,21 +390,6 @@ Enable line numbers and customize their format.
 
   (use-package cider
     :ensure t)
-
-  (use-package company
-    :after lsp-mode
-    :hook (lsp-mode . company-mode)
-    :bind
-    (:map company-active-map
-          ("<tab>" . company-complete-selection))
-    (:map lsp-mode-map
-          ("<tab>" . company-indent-or-complete-common))
-    :custom
-    (company-minimum-prefix-length 1)
-    (company-idle-delay 0.0))
-
-  (use-package company-box
-    :hook (company-mode . company-box-mode))
 
   (use-package flycheck
     :ensure t
