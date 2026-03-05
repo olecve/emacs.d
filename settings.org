@@ -360,6 +360,7 @@ Enable line numbers and customize their format.
 
 #+begin_src emacs-lisp
   (use-package eglot
+    :ensure nil
     :hook ((clojure-mode       . eglot-ensure)
            (clojurec-mode      . eglot-ensure)
            (clojurescript-mode . eglot-ensure)))
