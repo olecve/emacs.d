@@ -193,7 +193,7 @@ Enable line numbers and customize their format.
     :init
     (ivy-mode 1)
     (setq ivy-height 10
-          ivy-count-format "(%d/%d) "   ; change counter formar
+          ivy-count-format "(%d/%d) "   ; change counter format
           ivy-use-virtual-buffers t
           ivy-use-selectable-prompt t
           ivy-extra-directories ()      ; hide ../ and ./
