@@ -470,9 +470,6 @@ Enable line numbers and customize their format.
 ;; Remember and restore the last cursor location of opened files
 (save-place-mode 1)
 
-;; Don't pop up UI dialogs when promting
-(setq use-dialog-box nil)
-
 ;; Revert the buffer when the underlying file has changed
 (global-auto-revert-mode 1)
 
