@@ -28,3 +28,6 @@ bookmarks
 history
 recentf
 org-persist
+var/
+etc/
+.custom.el~

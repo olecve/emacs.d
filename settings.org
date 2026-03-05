@@ -23,22 +23,13 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; Organizes scattered cache files into var/ and etc/ subdirectories
+(use-package no-littering
+  :demand t)
+
 ;; Redirect Custom to a separate gitignored file
 (setq custom-file (expand-file-name ".custom.el" user-emacs-directory))
 (when (file-exists-p custom-file) (load custom-file))
-#+end_src
-
-* Keep .emacs.d Clean
-
-** Save all backups to ~/.emacs.d/backup
-
-Emacs can automatically create backup files. This tells Emacs to
-put all backups in ~/.emacs.d/backups. More info:
-http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
-
-#+begin_src emacs-lisp
-  (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
-  (setq auto-save-default nil)
 #+end_src
 
 * Default Coding System
@@ -164,7 +155,6 @@ Enable line numbers and customize their format.
 
 #+begin_src emacs-lisp
   (use-package doom-themes :defer t)
-
 
   (setq light-theme 'doom-gruvbox-light)
   (setq dark-theme 'doom-palenight)
@@ -453,7 +443,6 @@ Enable line numbers and customize their format.
 * Other
 
 #+begin_src emacs-lisp
-(setq recentf-save-file (concat user-emacs-directory ".recentf"))
 (setq recentf-max-menu-items 25)
 (recentf-mode 1)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
