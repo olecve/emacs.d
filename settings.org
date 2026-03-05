@@ -139,19 +139,14 @@ Enable line numbers and customize their format.
 ** Default font
 
 #+BEGIN_SRC emacs-lisp
-  (setq system-specific-font
-        (cond
-         ((eq system-type 'darwin)
-          (progn
-            (set-face-attribute 'default nil :family "Menlo" :height 140)
-            (set-face-attribute 'italic nil :underline nil)))
+  (cond
+   ((eq system-type 'darwin)
+    (set-face-attribute 'default nil :family "Menlo" :height 140)
+    (set-face-attribute 'italic nil :underline nil))
 
-         ((eq system-type 'windows-nt)
-          (progn
-            (set-face-attribute 'default nil :family "Cascadia Code" :height 100)
-            (set-face-attribute 'italic nil :underline nil)))
-
-         (t nil)))
+   ((eq system-type 'windows-nt)
+    (set-face-attribute 'default nil :family "Cascadia Code" :height 100)
+    (set-face-attribute 'italic nil :underline nil)))
 #+END_SRC
 
 ** Theme
