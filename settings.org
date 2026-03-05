@@ -71,6 +71,7 @@
 #+begin_src emacs-lisp
   (use-package dashboard
     :ensure t
+    :config
     (setq dashboard-startup-banner 1)
     (dashboard-setup-startup-hook))
 #+end_src
@@ -357,42 +358,23 @@ Enable line numbers and customize their format.
 *** Language Server Support
 
 #+begin_src emacs-lisp
-  (use-package lsp-mode
-    :commands (lsp lsp-deferred)
-    :init
-    (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
-    (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-    (setq lsp-completion-provider :none) ;; use corfu via capf
-    (lsp-headerline-breadcrumb-mode)
-    (lsp-enable-which-key-integration t))
-
-  (use-package lsp-ui
-    :hook (lsp-mode . lsp-ui-mode)
-    :custom
-    (lsp-ui-doc-position 'bottom))
-
-  (use-package lsp-treemacs
-    :after lsp)
+  (use-package eglot
+    :hook ((clojure-mode       . eglot-ensure)
+           (clojurec-mode      . eglot-ensure)
+           (clojurescript-mode . eglot-ensure)))
 #+end_src
 
 *** Clojure
 
 #+begin_src emacs-lisp
   (use-package clojure-mode
-    :mode "\\.clj\\'"
-    :init
-    (add-hook 'clojure-mode-hook #'lsp)
-    (add-hook 'clojurec-mode-hook #'lsp)
-    (add-hook 'clojurescript-mode-hook #'lsp))
+    :mode "\\.clj\\'")
 
   (use-package cider
     :ensure t)
 
-  (use-package flycheck
-    :ensure t
-    :init (global-flycheck-mode))
+  (add-hook 'prog-mode-hook #'flymake-mode)
 #+end_src
-
 
 * Other
 
@@ -465,6 +447,7 @@ Enable line numbers and customize their format.
   (use-package which-key
     :init (which-key-mode)
     :diminish which-key-mode
+    :config
     (setq which-key-idle-delay 0.5))
 #+end_src
 
