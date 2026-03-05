@@ -61,7 +61,6 @@
 
 #+begin_src emacs-lisp
   (use-package expand-region
-    :ensure t
     :bind
     ("C-=" . er/expand-region)
     ("C--" . er/contract-region))
@@ -71,7 +70,6 @@
 
 #+begin_src emacs-lisp
   (use-package dashboard
-    :ensure t
     :config
     (setq dashboard-startup-banner 1)
     (dashboard-setup-startup-hook))
@@ -304,7 +302,6 @@ Enable line numbers and customize their format.
 
 #+begin_src emacs-lisp
   (use-package ox-reveal
-    :ensure t
     :after org)
 #+end_src
 
@@ -323,7 +320,6 @@ Enable line numbers and customize their format.
 
 #+begin_src emacs-lisp
   (use-package treemacs
-    :ensure t
     :defer t
     :bind
     (:map global-map
@@ -372,8 +368,7 @@ Enable line numbers and customize their format.
   (use-package clojure-mode
     :mode "\\.clj\\'")
 
-  (use-package cider
-    :ensure t)
+  (use-package cider)
 
   (add-hook 'prog-mode-hook #'flymake-mode)
 #+end_src
@@ -398,7 +393,6 @@ Enable line numbers and customize their format.
 (setq global-auto-revert-non-file-buffers t)
 
 (use-package doom-modeline
-  :ensure t
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)
            (doom-modeline-icon nil)))
