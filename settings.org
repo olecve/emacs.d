@@ -146,9 +146,6 @@ Enable line numbers and customize their format.
 
 ** Theme
 
-   - Examples of all available base16 themes https://belak.github.io/base16-emacs/
-     - Alternate light: base16-atelier-cave-light, base16-atelier-plateau-light, base16-atelier-savanna-light, base16-atelier-lakeside-light
-     - Alternate dark: base16-eighties, base16-flat
    - =doom-snazzy=
    - =doom-vibrant=
    - A nice gallery of Emacs themes can be found at https://emacsthemes.com/.
@@ -173,28 +170,22 @@ Enable line numbers and customize their format.
 * Completion System
 
 #+begin_src emacs-lisp
-  (use-package ivy
-    :diminish
+  (use-package vertico
     :init
-    (ivy-mode 1)
-    (setq ivy-height 10
-          ivy-count-format "(%d/%d) "   ; change counter format
-          ivy-use-virtual-buffers t
-          ivy-use-selectable-prompt t
-          ivy-extra-directories ()      ; hide ../ and ./
-          ivy-initial-inputs-alist nil) ; remove ^ from initial input of M-x
+    (vertico-mode 1))
+
+  (use-package orderless
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles basic partial-completion)))))
+
+  (use-package marginalia
+    :init
+    (marginalia-mode 1))
+
+  (use-package consult
     :bind
-    ("C-s" . 'swiper))
-
-  (use-package counsel
-    :after ivy
-    :init
-    (counsel-mode 1)
-    :bind (:map ivy-minibuffer-map))
-
-  (use-package ivy-rich
-    :init
-    (ivy-rich-mode 1))
+    ("C-s" . consult-line))
 #+end_src
 
 * Org-Mode
@@ -355,12 +346,6 @@ Enable line numbers and customize their format.
     :demand t
     :bind ("C-M-p" . projectile-find-file)
     :bind-keymap ("C-c p" . projectile-command-map))
-
-  (use-package counsel-projectile
-    :disabled
-    :after projectile
-    :config
-    (counsel-projectile-mode))
 #+end_src
 
 *** Language Server Support
@@ -440,6 +425,7 @@ Enable line numbers and customize their format.
   ;; Add metals backend for lsp-mode
   (use-package lsp-metals)
 #+end_src
+
 * Other
 
 #+begin_src emacs-lisp
