@@ -13,8 +13,6 @@
                          ("elpa" . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
 
 ;; Initialize use-package on non-Linux platforms
 (unless (package-installed-p 'use-package)
@@ -149,7 +147,7 @@ Enable line numbers and customize their format.
    - A nice gallery of Emacs themes can be found at https://emacsthemes.com/.
 
 #+begin_src emacs-lisp
-  (use-package doom-themes :defer t)
+  (use-package doom-themes)
 
   (setq light-theme 'doom-gruvbox-light)
   (setq dark-theme 'doom-palenight)
