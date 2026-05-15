@@ -277,8 +277,8 @@ Enable line numbers and customize their format.
 
 (setq org-agenda-files
     (cond ((eq system-type 'darwin)
-           (append (directory-files-recursively "~/OneDrive/org/todo" ".org$")
-                   (directory-files-recursively "~/OneDrive/org/areas" ".org$")))
+           (append (directory-files-recursively "~/projects/org/todo" ".org$")
+                   (directory-files-recursively "~/projects/org/areas" ".org$")))
           ((eq system-type 'windows-nt)
            (append (directory-files-recursively (expand-file-name "OneDrive/org/todo" (getenv "USERPROFILE")) ".org$")
                    (directory-files-recursively (expand-file-name "OneDrive/org/areas" (getenv "USERPROFILE")) ".org$")))))
