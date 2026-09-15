@@ -1,6 +1,6 @@
 #+title: Emacs Configuration
 #+STARTUP: overview
-#+PROPERTY: header-args:emacs-lisp :mkdirp yes
+#+PROPERTY: header-args:emacs-lisp :mkdirp yes :shebang ";; -*- lexical-binding: t; -*-"
 
 * Package Management
 
@@ -277,8 +277,11 @@ Enable line numbers and customize their format.
 
 (setq org-agenda-files
     (cond ((eq system-type 'darwin)
-           (append (directory-files-recursively "~/projects/org/todo" ".org$")
-                   (directory-files-recursively "~/projects/org/areas" ".org$")))
+           (directory-files-recursively "~/projects/org" ".org$" nil
+                                         (lambda (dir)
+                                           (let ((name (file-name-nondirectory dir)))
+                                             (not (or (string-prefix-p "." name)
+                                                      (string-equal name "archives")))))))
           ((eq system-type 'windows-nt)
            (append (directory-files-recursively (expand-file-name "OneDrive/org/todo" (getenv "USERPROFILE")) ".org$")
                    (directory-files-recursively (expand-file-name "OneDrive/org/areas" (getenv "USERPROFILE")) ".org$")))))

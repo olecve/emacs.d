@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (let* ((org-file (expand-file-name "settings.org" user-emacs-directory))
        (el-file  (expand-file-name "settings.el"  user-emacs-directory)))
   (when (or (not (file-exists-p el-file))
