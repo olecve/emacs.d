@@ -70,6 +70,7 @@
   (use-package dashboard
     :config
     (setq dashboard-startup-banner 1)
+    (setq dashboard-items '((recents . 5) (bookmarks . 5)))
     (dashboard-setup-startup-hook))
 #+end_src
 
